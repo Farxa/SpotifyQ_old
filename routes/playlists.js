@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const Playlist = require('../models/Playlist');
 
 router.get("/", (req, res, next) => {
   res.json("All good in here");
