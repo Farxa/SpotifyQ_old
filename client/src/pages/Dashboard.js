@@ -4,7 +4,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 
 // Setting the spotifyApi, so that we can use it's functions
 const spotifyApi = new SpotifyWebApi({
-  clientId: "255a07b3950745cfa2d3741531875cb3"
+  clientId: process.env.CLIENT_ID
 });
 
 const Dashboard = ({ code }) => {
