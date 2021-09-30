@@ -1,6 +1,7 @@
 import './App.css';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Content from './pages/Content';
+import {Route} from 'react-router-dom';
 
 
 
@@ -11,8 +12,10 @@ function App() {
   
   return (
     <div className="App">
-      {code ? <Dashboard code={code} /> : <Login />}
+      {code ? <Content code={code} /> : <Login />}
       {/* <Signup/> */}
+      
+      
       
     </div>
   );

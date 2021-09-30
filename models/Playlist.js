@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 const playlistSchema = new Schema({
 	title: String,
 	image: String,
-    songs: [{
+    tracks: [{
         type: Schema.Types.ObjectId,
-        ref: 'Song'
+        ref: 'Track'
     }],
     owner: {
         type: Schema.Types.ObjectId,
