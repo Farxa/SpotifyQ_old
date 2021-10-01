@@ -5,6 +5,7 @@ import TrackSearchResults from "./TrackSearchResults";
 import Topbar from "../componants/Topbar";
 import Playbar from "../componants/Playbar";
 import Sidebar from "../componants/Sidebar";
+import axios from "axios";
 
 // Setting the spotifyApi, so that we can use it's functions
 const spotifyApi = new SpotifyWebApi({
@@ -15,6 +16,7 @@ const Content = ({ code }) => {
   const accessToken = useAuth(code);
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  
 
   useEffect(() => {
     if (!accessToken) return;
@@ -54,7 +56,7 @@ const Content = ({ code }) => {
     <Topbar/>
     <Sidebar/>
       <div>
-			<h3>Create a new playlist</h3>
+
 			<form>
         <label htmlFor="search">Search for songs/artists</label>
         <input type="search" id="search" name="search" value={search} onChange={e => setSearch(e.target.value)}/>
@@ -63,10 +65,6 @@ const Content = ({ code }) => {
           <TrackSearchResults track={track} key={track.id}/>
         ))}</div>
 
-
-          <div>+ New Playlist</div>
-        
-				
 				{/* <button type="submit">add this song to playlist</button> */}
 			</form>
 		</div>
@@ -78,7 +76,6 @@ const Content = ({ code }) => {
 const styling = {
   width: "100vw",
   height: "100vh",
-  background: "#121212",
   display: "flex",
   position: "relative",
   color: "white",
