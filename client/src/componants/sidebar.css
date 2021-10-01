@@ -17,12 +17,7 @@ li {
     border-left: 2px solid white;
     padding-left: 18px;
   }
-  li.library {
-    cursor: unset;
-    color: #999;
-    text-transform: uppercase;
-    font-weight: normal;
-  }
+  
 
   li.new-playlist {
     position: absolute;
@@ -33,7 +28,7 @@ i {
     transform: translateY(1px);
 }
 i::before {
-          font-size: 20px;
+  font-size: 20px;
 }
 
 span {

@@ -31,7 +31,7 @@ export default function Sidebar() {
         <ul className="container">
             <div className="logo">LOGO or something</div>
 
-            <li className="library">Library</li>
+          
 
             {playlists.map(list => (
                 <li
@@ -44,6 +44,7 @@ export default function Sidebar() {
                     {list}
                 </li>
       ))}
+
 
       <li className="new-playlist" onClick={() => {
           setSidebar({...sidebar, modal: true})
