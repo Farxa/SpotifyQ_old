@@ -8,47 +8,47 @@ import Sidebar from "../componants/Sidebar";
 import { getTokenFromResponse } from "../spotifyConfig";
  
 // Setting the spotifyApi, so that we can use it's functions
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID
-});
+// const spotifyApi = new SpotifyWebApi({
+//   clientId: process.env.CLIENT_ID
+// });
  
 const Content = () => {
-  const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  // const [search, setSearch] = useState('');
+  // const [searchResults, setSearchResults] = useState([]);
   
   
-  const setInitialValue = () => {
-    return (new URLSearchParams(window.location.search).get('token'))
-  }
+  // const setInitialValue = () => {
+  //   return (new URLSearchParams(window.location.search).get('token'))
+  // }
   
-  const [token, setToken] = useState(() => setInitialValue())
+  // const [token, setToken] = useState(() => setInitialValue())
  
-  useEffect(() => {
-    if (!token) return;
-    // Setting Up the spotifyApi with AccessToken so that we can use its functions anywhere in the component without setting AccessToken value again & again. 
-    spotifyApi.setAccessToken(token);
-  }, [token]);
+  // useEffect(() => {
+  //   if (!token) return;
+  //   // Setting Up the spotifyApi with AccessToken so that we can use its functions anywhere in the component without setting AccessToken value again & again. 
+  //   spotifyApi.setAccessToken(token);
+  // }, [token]);
 
  
-    useEffect(() => {
-        if (!search) return setSearchResults([])
-        if (!token) return
+  //   useEffect(() => {
+  //       if (!search) return setSearchResults([])
+  //       if (!token) return
  
-        let cancel = false
-        spotifyApi.searchTracks(search).then(res => {
-          if (cancel) return
-          setSearchResults(
-            res.body.tracks.items.map(track => {
-              return {
-                title: track.name,
-                id: track.id
-              }
-            })
-          )
+  //       let cancel = false
+  //       spotifyApi.searchTracks(search).then(res => {
+  //         if (cancel) return
+  //         setSearchResults(
+  //           res.body.tracks.items.map(track => {
+  //             return {
+  //               title: track.name,
+  //               id: track.id
+  //             }
+  //           })
+  //         )
             
-        })
-        return () => (cancel = true)
-    }, [search, token])
+  //       })
+  //       return () => (cancel = true)
+  //   }, [search, token])
  
  
  
@@ -56,7 +56,7 @@ const Content = () => {
     <div style={styling}>
     <Topbar/>
     <Sidebar/>
-      <div>
+      {/* <div>
  
       <form>
         <label htmlFor="search">Search for songs/artists</label>
@@ -66,9 +66,9 @@ const Content = () => {
           <TrackSearchResults track={track} key={track.id}/>
         ))}</div>
  
-        {/* <button type="submit">add this song to playlist</button> */}
+        <button type="submit">add this song to playlist</button>
       </form>
-    </div>
+    </div> */}
     <Playbar/>  
     </div>
   );

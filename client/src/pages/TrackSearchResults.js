@@ -1,18 +1,18 @@
-import React from "react"
+// import React from "react"
 
-export default function TrackSearchResult({ track, chooseTrack }) {
-  function handlePlay() {
-    chooseTrack(track)
-  }
+// export default function TrackSearchResult({ track, chooseTrack }) {
+//   function handlePlay() {
+//     chooseTrack(track)
+//   }
 
-  return (
-    <div
-      style={{ cursor: "pointer" }}
-      onClick={handlePlay}
-    >
-      <div>
-        <div>{track.title}</div>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div
+//       style={{ cursor: "pointer" }}
+//       onClick={handlePlay}
+//     >
+//       <div>
+//         <div>{track.title}</div>
+//       </div>
+//     </div>
+//   )
+// }
