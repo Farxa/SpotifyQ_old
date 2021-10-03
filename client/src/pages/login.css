@@ -4,10 +4,10 @@
     height: 100vh;
 }
 
-.login > a {
+.loginA {
     padding: 20px;
     border-radius: 100px;
-    background-color: #1db954;
+    background-image: linear-gradient(to right bottom, #3d8ea4, #3888a3, #3483a2, #327da0, #32779e, #3c76a4, #4a74a9, #5972ac, #7872b3, #9870b5, #b66db0, #d16ba5);
     font-weight: 800;
     color: white;
     text-decoration: none;

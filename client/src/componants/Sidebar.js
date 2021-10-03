@@ -31,6 +31,13 @@ export default function Sidebar(props) {
 					<Link to="/login">
 						<button>Login</button>
 					</Link>
+					<div>
+						<button 
+							onClick={() => {
+								window.location = 'http://localhost:5005' + '/api/spotify/login';
+							}}
+						>Login with Spotify</button>
+					</div>
 				</div>
 			)}
 		</nav>

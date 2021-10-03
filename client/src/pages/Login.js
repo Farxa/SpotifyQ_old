@@ -54,9 +54,6 @@ export default function Login(props) {
 				{message && (
 					<h3>{message}</h3>
 				)}
-                <div className="login">
-                    <a href='#'>Login with Spotify</a>
-                </div>
 			</form>
 		</>
 	)

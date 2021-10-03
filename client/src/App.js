@@ -20,7 +20,7 @@ function App(props) {
   }
 
   return (
-    <div className="App" style={styling}>
+    <div className="App">
     <Topbar/>
       <Sidebar user={user} setUser={addUser} />
       <Switch>
@@ -48,12 +48,6 @@ function App(props) {
   );
 }
 
-const styling = {
-  width: "100vw",
-  height: "100vh",
-  display: "flex",
-  position: "relative",
-  color: "white",
-}
+
 
 export default App;

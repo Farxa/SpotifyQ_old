@@ -19,7 +19,7 @@ require("./config")(app);
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const DB_URL = 'mongodb://localhost/music-app'
+const DB_URL = process.env.MONGODB_URI;
 
 app.use(
 	session({
@@ -36,11 +36,13 @@ app.use(
 // end of session configuration
 
 
-
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controlled from the routes/index.js
 const playlists = require("./routes/playlists");
 app.use("/api/playlists", playlists);
+
+const apiAuth = require("./routes/api/spotify");
+app.use("/api/spotify", apiAuth)
 
 
 const auth = require("./routes/auth");
