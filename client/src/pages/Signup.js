@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { login } from '../services/auth';
-import './login.css';
+import { signup } from '../services/auth';
 
-export default function Login(props) {
+export default function Signup(props) {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -12,7 +11,7 @@ export default function Login(props) {
 		e.preventDefault();
 		console.log(username, password)
 
-		login(username, password)
+		signup(username, password)
 			.then(response => {
 				console.log(response);
 				if (response.message) {
@@ -25,8 +24,8 @@ export default function Login(props) {
 					// user is correctly signed up in the backend
 					// add the user to the state of App.js
 					props.setUser(response);
-					// redirect to the playlists overview
-					props.history.push('/');
+					// redirect to the projects overview
+					props.history.push('/projects');
 				}
 			})
 			.catch(err => console.log(err));
@@ -34,8 +33,8 @@ export default function Login(props) {
 
 	return (
 		<>
-			<h3>Login</h3>
-			<form className="login" onSubmit={handleSubmit}>
+			<h3>Signup</h3>
+			<form onSubmit={handleSubmit}>
 				<label htmlFor="username">Username: </label>
 				<input
 					type="text"
@@ -50,13 +49,10 @@ export default function Login(props) {
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 				/>
-				<button type="submit">Log in 🔑</button>
+				<button type="submit">Sign Up ✍️</button>
 				{message && (
 					<h3>{message}</h3>
 				)}
-                <div className="login">
-                    <a href='#'>Login with Spotify</a>
-                </div>
 			</form>
 		</>
 	)

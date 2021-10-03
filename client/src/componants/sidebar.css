@@ -5,7 +5,7 @@
     padding-top: 20px;
 }
 
-li {
+.links {
     padding-left: 20px;
     text-transform: capitalize;
     margin-bottom: 10px;
@@ -13,7 +13,7 @@ li {
     font-weight: bold;
     list-style-type: none;
   }
-  li.active {
+  /* li.active {
     border-left: 2px solid white;
     padding-left: 18px;
   }
@@ -22,8 +22,8 @@ li {
   li.new-playlist {
     position: absolute;
     bottom: 80px;
-}
-i {
+} */
+/* i {
     margin-right: 5px;
     transform: translateY(1px);
 }
@@ -34,7 +34,7 @@ i::before {
 span {
     color: #999;
     font-weight: 300;
-  }
+  } */
 
   button {
     background-color: #2bcc6c;
@@ -48,7 +48,7 @@ span {
     cursor: pointer;
   }
 
-  .title {
+  /* .title {
     margin: 0;
     margin-bottom: 35px;
   }
@@ -65,6 +65,6 @@ span {
     margin: 0px auto;
     max-width: 250px;
     text-align: center;
-  }
+  } */
       
       

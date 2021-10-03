@@ -1,50 +1,59 @@
 import './App.css';
+import { useState } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Content from './pages/Content';
-import {Route} from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import { getTokenFromResponse } from './spotifyConfig';
-import SpotifyWebApi from 'spotify-web-api-node';
+import PlaylistDetails from './pages/PlaylistDetails';
 
+import ProtectedRoute from './componants/ProtectedRoute';
+import Sidebar from './componants/Sidebar';
+import Playbar from './componants/Playbar';
+import Topbar from './componants/Topbar';
 
-// const spotifyApi = new SpotifyWebApi({
-//   clientId: process.env.CLIENT_ID
-// });
+function App(props) {
 
+  const [user, setUser] = useState(props.user)
 
-function App() {
-  // const [token, setToken] = useState('');
+  const addUser = user => {
+    setUser(user);
+  }
 
-  // useEffect(() => {
-  //   const hash = getTokenFromResponse();
-  //   window.location.hash = "";
-
-  //   const _token = hash.access_token;
-
-  //   if (_token) {
-  //     setToken(_token);
-  //     spotifyApi.setAccessToken(_token);
-  //     spotifyApi.getMe().then(user => {
-        
-  //       console.log('USER👉🏽', user)
-  //     })
-  //   }
-
-  //   // console.log('I HAVE A TOKEN MODAFUCKAS ', token);
-  // }, [])
-  
   return (
-    <div className="App">
-      {/* <Signup/> */}
-      {/* {
-        token ? ( */}
-          <Content/>
-        {/* ) : (
-          <Login />
-        )
-      }  */}
+    <div className="App" style={styling}>
+    <Topbar/>
+      <Sidebar user={user} setUser={addUser} />
+      <Switch>
+      <ProtectedRoute
+          exact path='/playlists'
+          user={user}
+          component={Content}
+        />
+        <ProtectedRoute
+          exact path='/playlists/:id'
+          user={user}
+          component={PlaylistDetails}
+        />
+        <Route
+          exact path="/signup"
+          render={props => <Signup setUser={addUser} {...props} />}
+        />
+        <Route
+          exact path="/login"
+          render={props => <Login setUser={addUser} {...props} />}
+        />
+      </Switch>
+      <Playbar/>
     </div>
   );
+}
+
+const styling = {
+  width: "100vw",
+  height: "100vh",
+  display: "flex",
+  position: "relative",
+  color: "white",
 }
 
 export default App;
