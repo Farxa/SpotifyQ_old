@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-image: linear-gradient(to right bottom, #3d8ea4, #3888a3, #3483a2, #327da0, #32779e, #3c76a4, #4a74a9, #5972ac, #7872b3, #9870b5, #b66db0, #d16ba5);
+  background-image: url("./background.jpg");
+  background-size:cover;
   color: aliceblue;
   width: 100vw;
   height: 100vh;

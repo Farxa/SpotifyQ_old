@@ -30,7 +30,7 @@ export default function Content() {
 	return (
 		<div>
 			{playlists.map(playlist => <Playlist key={playlist._id} {...playlist} />)}
-
+				THIS IS CONTENT
 			<AddPlaylist refreshPlaylists={getAllPlaylists} />
 		</div>
 	)

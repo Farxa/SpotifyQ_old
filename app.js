@@ -41,8 +41,8 @@ app.use(
 const playlists = require("./routes/playlists");
 app.use("/api/playlists", playlists);
 
-const apiAuth = require("./routes/api/spotify");
-app.use("/api/spotify", apiAuth)
+// const apiAuth = require("./routes/api/spotify");
+// app.use("/api/spotify", apiAuth)
 
 
 const auth = require("./routes/auth");
