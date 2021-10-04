@@ -4,34 +4,16 @@ import axios from 'axios';
 import Playlist from '../componants/Playlist';
 import AddPlaylist from '../componants/AddPlaylist';
 
-export default function Content() {
-	const API_URL = 'http://localhost:5005';
+export default function Content(props) {
+	props.spotifyAPI.getMe().then(user => {
+        console.log('USER👉🏽', user)
+      })
 
-	const [playlists, setPlaylists] = useState([]);
-
-	const getAllPlaylists = () => {
-		// get request to the server
-		axios.get(`${API_URL}/api/playlists`)
-			.then(response => {
-				// console.log(response)
-				setPlaylists(response.data);
-			})
-			.catch(err => console.log(err));
-	}
-
-	useEffect(() => {
-		// get all the playlists from the server
-		getAllPlaylists();
-		// bc of the empty dependency array we only get all the playlists  
-		// on the first render (when the component is mounted)
-	}, [])
-
+	  
 
 	return (
 		<div>
-			{playlists.map(playlist => <Playlist key={playlist._id} {...playlist} />)}
-				THIS IS CONTENT
-			<AddPlaylist refreshPlaylists={getAllPlaylists} />
+			<AddPlaylist spotifyAPI={props.spotifyAPI} token={props.token}/>
 		</div>
 	)
 }

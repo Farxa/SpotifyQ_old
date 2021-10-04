@@ -31,9 +31,6 @@ function App(props) {
     if (_token) {
       setToken(_token);
       spotifyAPI.setAccessToken(_token);
-      spotifyAPI.getMe().then(user => {
-        console.log('USER👉🏽', user)
-      })
     }
 
     // console.log('I HAVE A TOKEN MODAFUCKAS ', token);
@@ -50,7 +47,7 @@ function App(props) {
 
   return (
     <div className="App">
-    <Topbar/>
+   
       <Sidebar token={token} setToken={addToken} />
       <Switch>
       
@@ -58,6 +55,7 @@ function App(props) {
           exact path='/playlists'
           user={user}
           token={token}
+          spotifyAPI={spotifyAPI}
           component={Content}
         />
       
