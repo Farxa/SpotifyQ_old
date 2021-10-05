@@ -17,8 +17,8 @@ export default function Sidebar(props) {
       <nav className="container">
 			{props.token ? (
 				<div className="links">
-					<Link to="/playlists">
-						<button>All Playlists</button>
+					<Link to="/queue">
+						<button>Create a Queue</button>
 					</Link>
 					<Link to="/" onClick={() => handleLogout()}>
 						<button>Logout</button>
@@ -28,11 +28,6 @@ export default function Sidebar(props) {
 				<div className="links">
 					<Link to="/signup">
 						<button>Signup</button>
-						<br />
-						<br />
-					</Link>
-					<Link to="/login">
-						<button>Login</button>
 						<br />
 						<br />
 					</Link>

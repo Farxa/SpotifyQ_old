@@ -38,8 +38,9 @@ app.use(
 
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controlled from the routes/index.js
-const playlists = require("./routes/playlists");
-app.use("/api/playlists", playlists);
+
+// const playlists = require("./routes/playlists");
+// app.use("/api/playlists", playlists);
 
 // const apiAuth = require("./routes/api/spotify");
 // app.use("/api/spotify", apiAuth)

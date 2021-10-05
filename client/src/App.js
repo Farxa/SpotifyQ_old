@@ -1,16 +1,14 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
 import {getTokenFromResponse} from './spotifyConfig'
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Content from './pages/Content';
-import PlaylistDetails from './pages/PlaylistDetails';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';
-import Playbar from './componants/Playbar';
-import Topbar from './componants/Topbar';
+import Home from './pages/Home';
 
 
 
@@ -32,8 +30,6 @@ function App(props) {
       setToken(_token);
       spotifyAPI.setAccessToken(_token);
     }
-
-    // console.log('I HAVE A TOKEN MODAFUCKAS ', token);
   }, [])
 
   const [user, setUser] = useState(props.user)
@@ -49,20 +45,16 @@ function App(props) {
     <div className="App">
    
       <Sidebar token={token} setToken={addToken} />
+      {token ? <Home/> : <Login />}
+      
       <Switch>
       
           <ProtectedRoute
-          exact path='/playlists'
+          exact path='/queue'
           user={user}
           token={token}
           spotifyAPI={spotifyAPI}
           component={Content}
-        />
-      
-        <ProtectedRoute
-          exact path='/playlists/:id'
-          user={user}
-          component={PlaylistDetails}
         />
 
         <Route
@@ -74,7 +66,6 @@ function App(props) {
           render={props => <Login setUser={addUser} {...props} />}
         />
       </Switch>
-      <Playbar/>
     </div>
   );
 }

@@ -34,8 +34,8 @@ export default function Login(props) {
 
 	return (
 		<>
-			<h3>Login</h3>
-			<form className="login" onSubmit={handleSubmit}>
+			<div className="container">
+			<form  onSubmit={handleSubmit}>
 				<label htmlFor="username">Username: </label>
 				<input
 					type="text"
@@ -50,11 +50,13 @@ export default function Login(props) {
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 				/>
-				<button type="submit">Log in 🔑</button>
+				<button type="submit">Log in</button>
 				{message && (
 					<h3>{message}</h3>
 				)}
 			</form>
+			</div>
+			
 		</>
 	)
 }

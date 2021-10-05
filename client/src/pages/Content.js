@@ -1,8 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Playlist from '../componants/Playlist';
-import AddPlaylist from '../componants/AddPlaylist';
+import CreateQ from './CreateQ';
+
 
 export default function Content(props) {
 	props.spotifyAPI.getMe().then(user => {
@@ -12,8 +10,8 @@ export default function Content(props) {
 	  
 
 	return (
-		<div>
-			<AddPlaylist spotifyAPI={props.spotifyAPI} token={props.token}/>
+		<div className="container">
+			<CreateQ spotifyAPI={props.spotifyAPI} token={props.token}/>
 		</div>
 	)
 }
