@@ -25,7 +25,17 @@ export default function CreateQ(props) {
 		setSelecedDevice(event.target.value)
 	}
 
-	
+	const handlePlayClick = () => {
+		
+		props.spotifyAPI.transferMyPlayback(selectedDevice)
+		.then(function() {
+			
+		  console.log('Transfering playback to ' + selectedDevice);
+		}, function(err) {
+		  //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+		  console.log('Something went wrong!', err);
+		});
+	}
 
 
 	const handleTrackSearch= () => {

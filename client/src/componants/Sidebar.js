@@ -23,6 +23,9 @@ export default function Sidebar(props) {
 					<Link to="/" onClick={() => handleLogout()}>
 						<button>Logout</button>
 					</Link>
+					<Link to="/join a queue">
+						<button>Join a Queue</button>
+					</Link>
 				</div>
 			) : (
 				<div className="links">

@@ -8,7 +8,9 @@ import Login from './pages/Login';
 import Content from './pages/Content';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';
-import Home from './pages/Home';
+import JoinQ from './pages/JoinQ';
+import Home from './pages/JoinQ';
+
 
 
 
@@ -45,16 +47,25 @@ function App(props) {
     <div className="App">
    
       <Sidebar token={token} setToken={addToken} />
-      {token ? <Home/> : <Login />}
+      {/* <Home token={token} setToken={addToken}/> */}
       
       <Switch>
-      
           <ProtectedRoute
           exact path='/queue'
           user={user}
           token={token}
           spotifyAPI={spotifyAPI}
           component={Content}
+        />
+
+        {/* <Route
+          exact path="/"
+          render={<Home />}
+        /> */}
+
+        <Route
+          exact path="/join a queue"
+          render={props => <JoinQ setToken={addToken} {...props} />}
         />
 
         <Route
