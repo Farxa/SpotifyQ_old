@@ -45,6 +45,9 @@ app.use(
 // const apiAuth = require("./routes/api/spotify");
 // app.use("/api/spotify", apiAuth)
 
+const queue = require("./routes/queue");
+app.use("/", queue);
+
 
 const auth = require("./routes/auth");
 app.use("/api/auth", auth)

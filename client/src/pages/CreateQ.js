@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import './createQ.css';
+import axios from "axios";
 
 
 
@@ -9,8 +10,13 @@ export default function CreateQ(props) {
 	const [queue,setQueue] = useState([]);
 	const [devices, setDevices] = useState([]);
 	const [selectedDevice, setSelecedDevice] = useState('');
+	const token = props.token;
 
-	console.log(selectedDevice)
+
+	console.log("THIS IS THE TOKEN:", token);
+	console.log('selectedDevice:',selectedDevice);
+
+
 
 	const getAllDevices = () => {
 		props.spotifyAPI.getMyDevices()
@@ -19,7 +25,7 @@ export default function CreateQ(props) {
 			console.log(data.body.devices)
 		})
 	}
-	console.log('DEVICES:',devices)
+	// console.log('DEVICES:',devices)
 
 	const selectDevice = event => {
 		setSelecedDevice(event.target.value)
@@ -27,7 +33,7 @@ export default function CreateQ(props) {
 
 	const handlePlayClick = () => {
 		
-		props.spotifyAPI.transferMyPlayback(selectedDevice)
+		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: true})
 		.then(function() {
 			
 		  console.log('Transfering playback to ' + selectedDevice);
@@ -35,6 +41,36 @@ export default function CreateQ(props) {
 		  //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 		  console.log('Something went wrong!', err);
 		});
+	}
+
+	const handlePauseClick = () => {
+		
+		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: false})
+		.then(function() {
+			
+		  console.log('Transfering playback to ' + selectedDevice);
+		}, function(err) {
+		  //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+		  console.log('Something went wrong!', err);
+		});
+	};
+
+	const handleNextClick = () => {
+		props.spotifyAPI.skipToNext()
+		.then(data => {
+			console.log("skip to next track", data)
+		}, (err) => {
+			console.log(err)
+		})
+	};
+
+	const handlePreviousClick = () => {
+		props.spotifyAPI.skipToPrevious()
+		.then(data => {
+			console.log("skip to previous track", data)
+		}, (err) => {
+			console.log(err)
+		})
 	}
 
 
@@ -45,7 +81,7 @@ export default function CreateQ(props) {
    }, function(err) {
 	console.error(err);
   });
-  }
+  };
   
   const addTrackToQueue = (track)=> {
 	  const existingTrackInQueue = queue.find(queueTrack=> queueTrack.id === track.id)
@@ -59,8 +95,31 @@ export default function CreateQ(props) {
 		  })
 		  
 	  }
+  };
+const [inviteCode, setInviteCode] = useState('');
+const API_URL = 'http://localhost:5005';
+
+
+const handleCreateQ = e => {
+	const requestBody = { selectedDevice, token, inviteCode };
+	axios.post(`/api/queue`, requestBody)
+		.then(res => {
+			console.log("This is the res: ",res)
+			setInviteCode(res.data.inviteCode)
+		})
+		.catch(err => console.log(err))
+};
+
+
+const copyToClipboard = () => {
+	let copyText = document.getElementById("createdQ");
+	copyText.select();
+	copyText.setSelectionRange(0, 99999); 
+	navigator.clipboard.writeText(copyText.value);
+	alert("Copied the text: " + copyText.value);
   }
-  console.log('queue:',queue)
+
+const createdQ_URL = `http://localhost:5005/${inviteCode}`;
   
 	return (
 		<div className="container">
@@ -98,15 +157,27 @@ export default function CreateQ(props) {
 				</select>
 			)}
 		  </div>
+		  <div className="row">
+		  <button onClick={handleCreateQ}>Create this Queue</button>
+		  {inviteCode && (
+			  <>
+			 <input type="text" value={createdQ_URL} id="createdQ"/> 
+  			<button onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+			  </>
+			)}
+		  </div>
 		  
 		  <div style={style}>
-                <button type="button">
+                <button type="button" onClick={() => {handlePreviousClick()}}>
                 <i className="fa fa-backward fa-lg"></i>
 				</button>
-            <button type="button" onClick={() => {handlePlayClick()}}>
+            	<button type="button" onClick={() => {handlePlayClick()}}>
 					<i className="fa fa-play fa-lg"></i>
 				</button>
-                <button type="button">
+				<button type="button" onClick={() => {handlePauseClick()}}>
+					<i className="fa fa-pause fa-lg"></i>
+				</button>
+                <button type="button" onClick={() => {handleNextClick()}}>
 					<i className="fa fa-forward fa-lg"></i>
 				</button>
         </div>
@@ -123,7 +194,8 @@ const style = {
     background: 'black',
     color: 'white',
     width: '100% ',
-    padding: '20px'
+    paddingBottom: '90px',
+	textAlign:'center',
 }
 
 

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const queueSchema = new Schema({
-    deviceID: {
+    selectedDevice: {
         type: String,
         required: true
     },
@@ -11,7 +11,7 @@ const queueSchema = new Schema({
         type: String,
         required: true
     },
-	inviteLink: {
+	inviteCode: {
         type: String,
         required: true
     },
@@ -24,10 +24,6 @@ const queueSchema = new Schema({
 			spotifyId: {
 				type: String,
 				required: true
-			},
-			played: {
-				type: Boolean,
-				default: false
 			}
 		}
 	],

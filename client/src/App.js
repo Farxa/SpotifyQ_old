@@ -8,7 +8,6 @@ import Login from './pages/Login';
 import Content from './pages/Content';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';
-import JoinQ from './pages/JoinQ';
 import Home from './pages/JoinQ';
 
 
@@ -63,10 +62,6 @@ function App(props) {
           render={<Home />}
         /> */}
 
-        <Route
-          exact path="/join a queue"
-          render={props => <JoinQ setToken={addToken} {...props} />}
-        />
 
         <Route
           exact path="/signup"
@@ -77,6 +72,7 @@ function App(props) {
           render={props => <Login setUser={addUser} {...props} />}
         />
       </Switch>
+      <footer className="footer">Created by Rahaf Abu Alhassan</footer>
     </div>
   );
 }

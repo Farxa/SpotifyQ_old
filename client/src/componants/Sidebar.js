@@ -23,20 +23,16 @@ export default function Sidebar(props) {
 					<Link to="/" onClick={() => handleLogout()}>
 						<button>Logout</button>
 					</Link>
-					<Link to="/join a queue">
-						<button>Join a Queue</button>
-					</Link>
 				</div>
 			) : (
-				<div className="links">
-					<Link to="/signup">
-						<button>Signup</button>
-						<br />
-						<br />
-					</Link>
+				<div >
 					<div className="links">
-            			<a href={loginUrl}><button>Login with Spotify</button></a>
+            			<a href={loginUrl}><button>LOGIN WITH SPOTIFY</button></a>
         			</div>
+					<div className="links">
+					<p>⚠ When joining or creating a Queue, open Spotify & play a
+						track to be able to queue up tracks</p>
+					</div>
 				</div>
 			)}
 		</nav>
