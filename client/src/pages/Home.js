@@ -8,8 +8,9 @@ export default function Home(props) {
                 <div >
 				<h1>Welcome to SpotifyQ</h1>
                 <br />
-                <h3>⚠ To be able to queue up tracks when joining or creating a Queue, open Spotify first &
-                 play/pause a track</h3>
+                <h3>⚠ Open your Spotify in the background 
+                <h4>to be able to connect your device 
+                and queue up tracks when joining or creating a Queue</h4></h3>
 				</div> 
         ) : (
                 <div >

@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const Queue = require("../models/Queue");
+
 
 router.post('/login', (req, res, next) => {
 	const { username, password } = req.body;
@@ -77,9 +79,53 @@ router.get('/loggedin', (req, res, next) => {
 	res.json(user);
 });
 
+router.get('/:inviteCode',  (req, res, next) => {
+  Queue.findOne({inviteCode: req.params.inviteCode}).then(queueDoc=> {
+		if (queueDoc === inviteCode) {
+			res.status(200).json(queueDoc);
+		} else if (queueDoc !== inviteCode) {
+			queueDoc = null
+		}
+	}).then(err => {
+		res.status(401).json({message: 'heute leider nicht'})
+	}).catch(err => {
+		next(err);
+	})
+});
+
+
+// .then(userFromDB => {
+// 	// if user exists 
+// 	if (userFromDB !== null) {
+// 		// we render signup again
+// 		res.status(400).json({ message: 'Username is already taken' });
+// 	} else {
+// 		// if we reach this line the username can be used
+// 		// password as the value for the password field
+// 		const salt = bcrypt.genSaltSync();
+// 		const hash = bcrypt.hashSync(password, salt);
+// 		console.log(hash);
+// 		// we create a document for that user in the db with the hashed 
+// 		User.create({ username: username, password: hash })
+// 			.then(createdUser => {
+// 				console.log(createdUser);
+// 				// log the user in
+// 				req.session.user = createdUser;
+// 				res.status(200).json(createdUser);
+// 			})
+// 			.catch(err => {
+// 				next(err);
+// 			})
+
+
+
+
+
 router.delete('/logout', (req, res, next) => {
 	req.session.destroy();
 	res.status(200).json({ message: 'successful logout' });
-})
+});
+
+//
 
 module.exports = router;

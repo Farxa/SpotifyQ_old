@@ -58,18 +58,15 @@ function App(props) {
         />
 
         <Route
+          exact path="/:inviteCode"
+          render={props => <Content token={token} setToken={addToken} {...props} />}
+        />  
+
+        <Route
           exact path="/"
           render={props => <Home token={token} {...props} />}
         />
 
-        <Route
-          exact path="/signup"
-          render={props => <Signup setUser={addUser} {...props} />}
-        />
-        <Route
-          exact path="/login"
-          render={props => <Login setUser={addUser} {...props} />}
-        />
       </Switch>
       <footer className="footer">Created by Rahaf Abu Alhassan</footer>
     </div>

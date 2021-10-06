@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
 
@@ -12,9 +12,27 @@ export default function CreateQ(props) {
 	const [selectedDevice, setSelecedDevice] = useState('');
 	const token = props.token;
 
+	const [message, setMessage] = useState('');
 
-	console.log("THIS IS THE TOKEN:", token);
-	console.log('selectedDevice:',selectedDevice);
+	useEffect(()=> {
+
+		if (props.match.params.inviteCode) {
+			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
+				console.log("THIS IS RES.DATS",res.data);
+				 setSelecedDevice(res.data.selectedDevice)
+				 props.setToken(res.data.token)
+			}).catch(message => setMessage(message))
+		} 
+		
+	}, []) 
+
+
+
+
+	// console.log("THIS IS THE INVITECODE: ",props.match && props.match.params.inviteCode);
+
+	// console.log("THIS IS THE TOKEN:", token);
+	// console.log('selectedDevice:',selectedDevice);
 
 
 
@@ -22,7 +40,7 @@ export default function CreateQ(props) {
 		props.spotifyAPI.getMyDevices()
 		.then(data =>{
 			setDevices(data.body.devices)
-			console.log(data.body.devices)
+			// console.log(data.body.devices)
 		})
 	}
 	// console.log('DEVICES:',devices)
@@ -77,6 +95,7 @@ export default function CreateQ(props) {
 	const handleTrackSearch= () => {
 	  props.spotifyAPI.searchTracks(input)
 	  .then(data => {
+		  console.log('TRACKS::', data.body.tracks.items)
 		  setTracks(data.body.tracks.items)
    }, function(err) {
 	console.error(err);
@@ -97,77 +116,74 @@ export default function CreateQ(props) {
 	  }
   };
 const [inviteCode, setInviteCode] = useState('');
-const API_URL = 'http://localhost:5005';
-
 
 const handleCreateQ = e => {
 	const requestBody = { selectedDevice, token, inviteCode };
 	axios.post(`/api/queue`, requestBody)
 		.then(res => {
-			console.log("This is the res: ",res)
 			setInviteCode(res.data.inviteCode)
 		})
 		.catch(err => console.log(err))
 };
 
-
-const copyToClipboard = () => {
-	let copyText = document.getElementById("createdQ");
-	copyText.select();
-	copyText.setSelectionRange(0, 99999); 
-	navigator.clipboard.writeText(copyText.value);
-	alert("Copied the text: " + copyText.value);
-  }
-
-const createdQ_URL = `http://localhost:5005/${inviteCode}`;
+const createdQ_URL = `http://localhost:3000/${inviteCode}`;
   
 	return (
-		<div className="container">
-		  <div className="row">
-			<p>Search for a Track</p>
-			<input value={input} onChange={e=> setInput(e.target.value)}/>
-			<button onClick={handleTrackSearch}>Search</button>
-			<div className="row">
-			  { tracks.map(track=> (
-			   <div key={track.id}>
-			   <a href={track.external_urls.spotify}>{track.name}</a>
-			   <button onClick={()=> addTrackToQueue(track)}>Add to Queue</button>
-			   </div>
-			  ))}
+		<div>
+			<div className="container">
+				<div className="row">
+					<p>Search for a Track</p>
+            		<input value={input} onChange={e=> setInput(e.target.value)}/>
+            		<button onClick={handleTrackSearch}>Search</button>
+				</div>
+
+				<div className="row">
+					{ tracks.map(track=> (
+               		<div key={track.id}>
+               			<p>{track.name}</p>
+               			<p>{track.artists[0].name}</p>
+               			<button onClick={()=> addTrackToQueue(track)}>Add to Queue</button>
+               		</div>
+              		))}
+				</div>
+
+				<div className="row">
+					<h3>QUEUE TRACKS</h3>
+          			{queue.map(queueTrack => (
+               		<div>
+               			<p>{queueTrack.name}</p>
+               		</div>
+           			))}
+
+				</div>
+
+				<div className="row">
+				<button onClick={()=> getAllDevices()}>Select a device</button>
+          		{devices.length > 0 && (
+                	<select name="device" id="" onChange={selectDevice}>
+                    	<option value="">Choose a device</option>
+                    	{devices.map(device => (
+                    	<option value={device.id}>{device.name}</option>
+                   		 ))}
+               		 </select>
+            	)}
+				</div>
+
+				<div className="row">
+					<button onClick={handleCreateQ}>Create this Queue</button>
+          			{inviteCode && (
+              			<>
+             				<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
+            				<button onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+              			</>
+            		)}
+
+				</div>
+
 			</div>
-		  </div>
-  
-		  <div className="row">
-		  <p>QUEUE TRACKS</p>
-		  {queue.map(queueTrack => (
-			   <div>
-			   <p>{queueTrack.name}</p>
-			   </div>
-		   ))}
-		  </div>
+		
 		  
-		  <div className="row">
-		  <button onClick={()=> getAllDevices()}>Select a device</button>
-		  {devices.length > 0 && (
-				<select name="device" id="" onChange={selectDevice}>
-					<option value="">Choose a device</option>
-					{devices.map(device => (
-						<option value={device.id}>{device.name}</option>
-					))}
-				</select>
-			)}
-		  </div>
-		  <div className="row">
-		  <button onClick={handleCreateQ}>Create this Queue</button>
-		  {inviteCode && (
-			  <>
-			 <input type="text" value={createdQ_URL} id="createdQ"/> 
-  			<button onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
-			  </>
-			)}
-		  </div>
-		  
-		  <div style={style}>
+		  	<div style={style}>
                 <button type="button" onClick={() => {handlePreviousClick()}}>
                 <i className="fa fa-backward fa-lg"></i>
 				</button>
@@ -180,7 +196,7 @@ const createdQ_URL = `http://localhost:5005/${inviteCode}`;
                 <button type="button" onClick={() => {handleNextClick()}}>
 					<i className="fa fa-forward fa-lg"></i>
 				</button>
-        </div>
+        	</div>
 		</div>
 	  
 	)

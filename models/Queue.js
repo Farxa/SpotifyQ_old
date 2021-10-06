@@ -27,7 +27,8 @@ const queueSchema = new Schema({
 			}
 		}
 	],
-});
+    
+}, { timestamps: true });
 
 const Queue = mongoose.model('Queue', queueSchema);
 module.exports = Queue;
