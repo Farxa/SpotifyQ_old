@@ -29,10 +29,6 @@ export default function Sidebar(props) {
 					<div className="links">
             			<a href={loginUrl}><button>LOGIN WITH SPOTIFY</button></a>
         			</div>
-					<div className="links">
-					<p>⚠ When joining or creating a Queue, open Spotify & play a
-						track to be able to queue up tracks</p>
-					</div>
 				</div>
 			)}
 		</nav>

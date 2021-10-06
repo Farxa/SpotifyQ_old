@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Content from './pages/Content';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';
-import Home from './pages/JoinQ';
+import Home from './pages/Home';
 
 
 
@@ -50,18 +50,17 @@ function App(props) {
       
       <Switch>
           <ProtectedRoute
-          exact path='/queue'
+          path='/queue'
           user={user}
           token={token}
           spotifyAPI={spotifyAPI}
           component={Content}
         />
 
-        {/* <Route
+        <Route
           exact path="/"
-          render={<Home />}
-        /> */}
-
+          render={props => <Home token={token} {...props} />}
+        />
 
         <Route
           exact path="/signup"

@@ -1,9 +1,10 @@
 .center-div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
-  margin-left: 25%;
+  width: 100%;
+  height: 100%;
+  
 }
