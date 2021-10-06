@@ -81,13 +81,11 @@ router.get('/loggedin', (req, res, next) => {
 
 router.get('/:inviteCode',  (req, res, next) => {
   Queue.findOne({inviteCode: req.params.inviteCode}).then(queueDoc=> {
-		if (queueDoc === inviteCode) {
+		if (queueDoc) {
 			res.status(200).json(queueDoc);
-		} else if (queueDoc !== inviteCode) {
-			queueDoc = null
+		} else  {
+			res.status(401).json({message: 'heute leider nicht'})
 		}
-	}).then(err => {
-		res.status(401).json({message: 'heute leider nicht'})
 	}).catch(err => {
 		next(err);
 	})

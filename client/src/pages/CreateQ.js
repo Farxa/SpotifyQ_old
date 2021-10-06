@@ -15,15 +15,15 @@ export default function CreateQ(props) {
 	const [message, setMessage] = useState('');
 
 	useEffect(()=> {
-
 		if (props.match.params.inviteCode) {
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
 				console.log("THIS IS RES.DATS",res.data);
 				 setSelecedDevice(res.data.selectedDevice)
 				 props.setToken(res.data.token)
-			}).catch(message => setMessage(message))
-		} 
-		
+			}).catch(message => {
+				setMessage(message)
+			})
+		} 	
 	}, []) 
 
 
@@ -127,7 +127,13 @@ const handleCreateQ = e => {
 };
 
 const createdQ_URL = `http://localhost:3000/${inviteCode}`;
-  
+  if (message) return (
+	<div className="svenContainer">
+		<img style={{height: '400px'}} src="https://www.fazemag.de/wp-content/uploads/2016/02/sven_marquardt_c_mitteldeutscher_verlag__1000.jpg" alt="Sven Marquardt" />
+		<br />
+  		<h1 style={{textAlign: 'center'}}>Heute leider nicht</h1>
+  	</div>
+  )
 	return (
 		<div>
 			<div className="container">
