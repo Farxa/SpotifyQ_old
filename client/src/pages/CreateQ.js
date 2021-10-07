@@ -163,7 +163,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
              					 
             					<div onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>
 								<input style={{marginRight: '15px'}} type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/>
-								<i style={{fontSize:'25px', paddingLeft: '10px'}} class="fas fa-copy"></i>
+								<i style={{fontSize:'25px', paddingLeft: '10px', cursor: 'pointer'}} class="fas fa-copy"></i>
 								</div>
               				</div>
             			)}
@@ -173,8 +173,8 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				</div>
 
 				<div className="flexItem2 searchContainer">
-				
-					<input value={input} onChange={e=> setInput(e.target.value)}/>
+							
+					<input style={{width: '185px', marginBottom: '20px'}} value={input} onChange={e=> setInput(e.target.value)}/>
             		<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 				
 					
@@ -184,8 +184,8 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					   		
 								<div className="addTrack" onClick={()=> addTrackToQueue(track)}>
 								<div>
-									<i class="fas fa-plus-circle">  <h4>{track.name}</h4></i>
-									
+									<i style={{float: 'left', fontSize: '25px', marginRight: '6px', marginTop: '3px'}} class="fas fa-plus-circle"></i>
+									<h4 style={{float: 'right'}}>{track.name}</h4>	
 								</div>
 								
 								<div>
