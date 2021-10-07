@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
-// import socketIOClient from 'socket.io-client';
+
 
 
 
@@ -18,6 +18,9 @@ export default function CreateQ(props) {
 
 
 	useEffect(()=> {
+		props.socket.on('track added', payload => {
+			setQueue([...queue, payload.track]);
+		  })
 		if (props.match.params.inviteCode) {
 
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
@@ -104,6 +107,9 @@ export default function CreateQ(props) {
 		  return
 	  } else {
 		  setQueue([...queue,track]);
+		  props.socket.emit('new track', {
+			  track: track
+		  })
 		  props.spotifyAPI.addToQueue(track.uri)
 		  .then(data => {
 			console.log(data)

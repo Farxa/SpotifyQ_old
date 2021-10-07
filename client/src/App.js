@@ -3,18 +3,19 @@ import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
 import {getTokenFromResponse} from './spotifyConfig'
-
 import Content from './pages/Content';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';
 import Home from './pages/Home';
-
+import socketIOClient from 'socket.io-client';
 
 
 
 const spotifyAPI = new SpotifyWebApi({
   ClientId: "ea28d4ba34f34b44b59c640052c6e098"
 });
+
+const socket = socketIOClient('https://spotifiq.herokuapp.com/');
 
 function App(props) {
   const [token, setToken] = useState(null);
@@ -53,12 +54,13 @@ function App(props) {
           user={user}
           token={token}
           spotifyAPI={spotifyAPI}
+          socket={socket}
           component={Content}
         />
 
         <Route
           exact path="/:inviteCode"
-          render={props => <Content token={token} setToken={addToken} spotifyAPI={spotifyAPI} {...props} />}
+          render={props => <Content token={token} socket={socket} setToken={addToken} spotifyAPI={spotifyAPI} {...props} />}
         />  
 
         <Route
