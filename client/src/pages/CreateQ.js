@@ -140,7 +140,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 		<div>
 			<div className="containerQ">
 
-				<div className="deviceAndInvite">
+				<div className="device">
 					<div className="deviceContainer">
 						<button onClick={()=> getAllDevices()}><i class="far fa-hand-pointer"> Select a device</i></button>
           				{devices.length > 0 && (
@@ -151,17 +151,6 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
                    		 	))}
                		 		</select>
             			)}
-					</div>
-
-					<div className="inviteContainer">
-						<button onClick={handleCreateQ}>Invite friends to join your Q</button>
-          				{inviteCode && (
-              				<div>
-             					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
-            					<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
-              				</div>
-            			)}
-
 					</div>
 
 				</div>
@@ -191,6 +180,16 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				
 
 				<div className="Queue">
+					<div className="inviteContainer">
+						<button onClick={handleCreateQ}>Invite friends to join your Q</button>
+          				{inviteCode && (
+              				<div>
+             					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
+            					<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+              				</div>
+            			)}
+
+					</div>
 					<h2>Queue</h2>
           			{queue.map(queueTrack => (
                		<div>
