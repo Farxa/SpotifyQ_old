@@ -8,7 +8,7 @@
 }
 
 .flexItem {
-    border: 1px solid grey;
+    border: 2px solid red;
     text-align: center;
     margin: 5px;
     order: 0;
