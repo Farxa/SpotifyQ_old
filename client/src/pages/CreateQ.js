@@ -167,8 +167,10 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				</div>
 
 				<div className="flexItem2 searchContainer">
-            			<input value={input} onChange={e=> setInput(e.target.value)}/>
-            			<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
+				<form className="form">
+					<input value={input} onChange={e=> setInput(e.target.value)}/>
+            		<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
+				</form>
 					
 					<div className="searchResults">
 						{ tracks.map(track=> (

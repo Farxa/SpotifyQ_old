@@ -32,10 +32,27 @@
     align-self: auto;
 }
 
+form.form input {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid white;
+    float: left;
+}
 
 
+form.form button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    border: 1px solid white;
+    border-left: none;
+    cursor: pointer;
+}
 
 
+form.form button:hover {
+    background: #0d1f9f;
+}
 
 
 .svenContainer {
