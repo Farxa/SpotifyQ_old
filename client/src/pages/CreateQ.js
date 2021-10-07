@@ -142,7 +142,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				<div className="flexItem1 device">
 					<div className="deviceContainer">
-						<button onClick={()=> getAllDevices()}>Select a device <i class="far fa-hand-pointer"></i></button>
+						<button style={{marginBottom: '20px'}} onClick={()=> getAllDevices()}>Select a device  <i class="far fa-hand-pointer"></i></button>
           				{devices.length > 0 && (
                 			<select name="device" id="" onChange={selectDevice}>
                     		<option value="">Choose a device</option>
@@ -155,13 +155,13 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 					<div className="inviteContainer">
 					<div>
-						<button onClick={handleCreateQ}>Invite friends to join your Q</button>
+						<button style={{marginBottom: '20px'}} onClick={handleCreateQ}>Invite friends to join your Q</button>
 					</div>
 						
           				{inviteCode && (
               				<div>
              					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
-            					<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+            					<div style={{marginLeft: '15px'}} onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}><i class="fas fa-copy"></i>Copy to Clipboard</div>
               				</div>
             			)}
 
@@ -180,15 +180,15 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
                			<div className="searchResults" key={track.id}>
 					   		
 								<div className="addTrack" onClick={()=> addTrackToQueue(track)}>
-								<i class="fas fa-plus-circle"></i>
-								<h4>{track.name}</h4>
+								<div>
+									<i class="fas fa-plus-circle"></i>
+									<h4>{track.name}</h4>
 								</div>
-							
-							<div>
-							<p>🎤 {track.artists[0].name}</p>
-							</div>
-							
-					   		
+								
+								<div>
+									<p>🎤 {track.artists[0].name}</p>
+									</div>
+								</div>
                			</div>
               			))}
 				</div>
@@ -198,9 +198,11 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				<div className=" flexItem3 Queue">
 					<h2>Queue</h2>
           			{queue.map(queueTrack => (
-               		<div>
-               			<p>{queueTrack.name}</p>
-               		</div>
+						  <ul className="queueTracks">
+							  <li>
+							  <p>{queueTrack.name}</p>
+							  </li>
+						  </ul>
            			))}
 
 				</div>

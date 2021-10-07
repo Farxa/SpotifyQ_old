@@ -27,7 +27,7 @@ export default function Sidebar(props) {
 			) : (
 				<div >
 					<div className="links">
-            			<a href={loginUrl}><button>LOGIN WITH SPOTIFY</button></a>
+            			<a href={loginUrl}><button style={{width: '160px', marginTop: '30px'}}>LOGIN WITH SPOTIFY</button></a>
         			</div>
 				</div>
 			)}

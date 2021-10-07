@@ -53,5 +53,11 @@
     text-align: left;
 }
 
+.queueTracks {
+    cursor: pointer;
+    background: linear-gradient(238deg, rgba(0,0,0,1) 36%, rgba(3,18,128,1) 100%, rgba(0,255,191,1) 100%);
+    text-align: left;
+}
+
 
 
