@@ -185,7 +185,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 								<div className="addTrack" onClick={()=> addTrackToQueue(track)}>
 								<div>
 									<i style={{float: 'left', fontSize: '25px', marginRight: '6px', marginTop: '3px'}} class="fas fa-plus-circle"></i>
-									<h4 style={{float: 'right'}}>{track.name}</h4>	
+									<h4>{track.name}</h4>	
 								</div>
 								
 								<div>
