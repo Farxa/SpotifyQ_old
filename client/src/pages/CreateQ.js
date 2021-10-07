@@ -144,7 +144,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					<div className="deviceContainer">
 						<button style={{marginBottom: '20px'}} onClick={()=> getAllDevices()}>Select a device  <i class="far fa-hand-pointer"></i></button>
           				{devices.length > 0 && (
-                			<select name="device" id="" onChange={selectDevice}>
+                			<select style={{marginBottom: '15px', width: '170px', marginRight: '20px'}} name="device" id="" onChange={selectDevice}>
                     		<option value="">Choose a device</option>
                     		{devices.map(device => (
                     		<option value={device.id}>{device.name}</option>
@@ -161,7 +161,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
           				{inviteCode && (
               				<div>
              					 
-            					<div onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>
+            					<div style={{marginRight: '15px'}} onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>
 								<input style={{marginRight: '15px'}} type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/>
 								<i style={{fontSize:'25px', paddingLeft: '10px', cursor: 'pointer'}} class="fas fa-copy"></i>
 								</div>
@@ -175,7 +175,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				<div className="flexItem2 searchContainer">
 							
 					<input style={{width: '185px', marginBottom: '20px'}} value={input} onChange={e=> setInput(e.target.value)}/>
-            		<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
+            		<button	style={{height: '40px', marginLeft: '10px'}} onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 				
 					
 					<div>
