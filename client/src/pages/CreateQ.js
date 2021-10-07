@@ -157,7 +157,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				
 				<div className="searchContainer">
-						<form style={{margin:'auto', maxWidth:'300px'}}>
+						<form>
   							<input value={input} onChange={e=> setInput(e.target.value)} placeholder="Search for a Track" name="search"/>
   							<button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 						</form>
