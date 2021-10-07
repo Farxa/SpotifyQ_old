@@ -177,15 +177,13 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
             			<button	button onClick={handleTrackSearch}>Search</button> */}
 					</div>
 
-				<br />
-
 					<div className="searchResults">
 						{ tracks.map(track=> (
                			<div key={track.id}>
 					   	<div>
 						   <button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
 					   		<h4>Track: {track.name}</h4>
-							<p>Artists: {track.artists[0].name}</p>	
+							{/* <p>Artists: {track.artists[0].name}</p>	 */}
 					   </div>
                			</div>
               			))}
