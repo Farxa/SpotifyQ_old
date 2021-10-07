@@ -168,22 +168,21 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				
 				<div className="searchContainer">
-					<div className="searchField">
 						<form style={{margin:'auto', maxWidth:'300px'}}>
   							<input value={input} onChange={e=> setInput(e.target.value)} placeholder="Search for a Track" name="search"/>
   							<button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 						</form>
             			{/* <input value={input} onChange={e=> setInput(e.target.value)}/>
             			<button	button onClick={handleTrackSearch}>Search</button> */}
-					</div>
-
+					
 					<div className="searchResults">
 						{ tracks.map(track=> (
                			<div key={track.id}>
 					   	<div>
-						   <button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
-					   		<h4>Track: {track.name}</h4>
-							{/* <p>Artists: {track.artists[0].name}</p>	 */}
+					   		<h4>{track.name}</h4>
+							<p>🎤{track.artists[0].name}</p>	
+							<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
+							
 					   </div>
                			</div>
               			))}
