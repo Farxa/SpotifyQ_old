@@ -168,7 +168,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				</div>
 
-				<div className=" flexitem3 device">
+				<div className="flexItem3 device">
 					<div className="deviceContainer">
 						<button onClick={()=> getAllDevices()}><i class="far fa-hand-pointer"> Select a device</i></button>
           				{devices.length > 0 && (
@@ -193,10 +193,6 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					</div>
 
 				</div>
-
-				
-
-				
 
 			</div>
 		
