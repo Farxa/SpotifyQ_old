@@ -8,7 +8,7 @@ export default function Content(props) {
     //   })
 
 	return (
-		<div>
+		<div style={{flexGrow: '1'}}>
 			<CreateQ spotifyAPI={props.spotifyAPI} socket={props.socket} token={props.token} setToken={props.setToken} spotifyAPI={props.spotifyAPI} {...props}/>
 		</div>
 	)

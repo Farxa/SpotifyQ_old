@@ -25,6 +25,7 @@
     font-size: 13px;
     border: none;
     cursor: pointer;
+    width: fit-content;
   }
 
   /* .title {
