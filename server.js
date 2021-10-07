@@ -17,6 +17,6 @@ io.on('connection', socket => {
   socket.on('new track', payload => {
     console.log('track added: ', payload)
     // send this message to all other connected clients
-    io.emit('track added', payload);
+    socket.broadcast.emit('track added', payload);
   })
 })
