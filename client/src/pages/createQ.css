@@ -6,6 +6,16 @@
    align-items: stretch;
 }
 
+.flexItem {
+    padding: 30px 10px;
+    border: 1px solid grey;
+    text-align: center;
+    margin: 5px;
+    width: 150px;
+    flex-basis: 150px;
+    flex-grow: 1;
+}
+
 
 
 

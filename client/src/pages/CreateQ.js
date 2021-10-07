@@ -139,7 +139,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 	return (
 		<div>
 			<div className="containerQ">
-				<div className="searchContainer">
+				<div className="flexItem searchContainer">
             			<input value={input} onChange={e=> setInput(e.target.value)}/>
             			<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 					
@@ -158,7 +158,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 				</div>
 				
 
-				<div className="Queue">
+				<div className=" flexItem Queue">
 					<h2>Queue</h2>
           			{queue.map(queueTrack => (
                		<div>
@@ -168,7 +168,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				</div>
 
-				<div className="device">
+				<div className=" flexitem device">
 					<div className="deviceContainer">
 						<button onClick={()=> getAllDevices()}><i class="far fa-hand-pointer"> Select a device</i></button>
           				{devices.length > 0 && (
