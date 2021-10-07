@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
+import socketIOClient from 'socket.io-client';
 
 
 
@@ -16,6 +17,10 @@ export default function CreateQ(props) {
 	console.log("API", props.spotifyAPI);
 
 	useEffect(()=> {
+		const socket = socketIOClient('http//localhost:5005');
+		socket.on('added track ', payload => {
+			setQueue(payload.track);
+		})
 		if (props.match.params.inviteCode) {
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
 				console.log("This is the selectedDevice",res.data.selectedDevice);
@@ -101,6 +106,9 @@ export default function CreateQ(props) {
 	  } else {
 		  setQueue([...queue,track])
 		  props.spotifyAPI.addToQueue(track.uri)
+		  socket.emit('track added ', {
+			  track: track.uri
+		  })
 		  .then(data => {
 			console.log(data)
 		  })
