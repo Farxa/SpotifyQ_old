@@ -1,8 +1,9 @@
 .containerQ{
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: sans-serif; */
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: stretch;
 }
 
 
@@ -20,7 +21,5 @@
     padding-left: 350px;
 }
 
-/* .buttonQ {
-    width: fit-content;
-} */
+
 

@@ -137,54 +137,77 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
   	</div>
   )
 	return (
-		<div>
+		<>
 			<div className="containerQ">
-				<div className="row">
-					<p>Search for a Track</p>
-            		<input value={input} onChange={e=> setInput(e.target.value)}/>
-            		<button onClick={handleTrackSearch}>Search</button>
 
-					{ tracks.map(track=> (
-               		<div key={track.id}>
-					   <div>
-					   <h4>Track: {track.name}</h4>
-						<p>Artists: {track.artists[0].name}</p>
-               			<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
-					   </div>
-               		</div>
-              		))}
+				<div className="deviceAndInvite">
+					<div className="deviceContainer">
+						<button onClick={()=> getAllDevices()}><i class="far fa-hand-pointer"> Select a device</i></button>
+          				{devices.length > 0 && (
+                			<select name="device" id="" onChange={selectDevice}>
+                    		<option value="">Choose a device</option>
+                    		{devices.map(device => (
+                    		<option value={device.id}>{device.name}</option>
+                   		 	))}
+               		 		</select>
+            			)}
+					</div>
+
+					<div className="inviteContainer">
+						<button onClick={handleCreateQ}>Invite friends to join your Q</button>
+          				{inviteCode && (
+              				<div>
+             					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
+            					<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+              				</div>
+            			)}
+
+					</div>
+
 				</div>
 
-				<div className="row">
-					<h3>Queue</h3>
+				
+				<div className="searchContainer">
+					<div className="searchField">
+						<form style={{margin:'auto', maxWidth:'300px'}}>
+  							<input value={input} onChange={e=> setInput(e.target.value)} placeholder="Search for a Track" name="search"/>
+  							<button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
+						</form>
+            			{/* <input value={input} onChange={e=> setInput(e.target.value)}/>
+            			<button	button onClick={handleTrackSearch}>Search</button> */}
+					</div>
+
+					<br />
+
+					<div className="searchResults">
+
+						{ tracks.map(track=> (
+               				<div key={track.id}>
+							<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
+					   		<div>
+					   			<h4>Track: {track.name}</h4>
+					   		</div>
+               				</div>
+              			))}
+						
+					  	{tracks.artists.map(artist => {
+						  <div >
+						  	<p>Artists: {artist.name}</p>
+						  </div>
+					  	})}
+						  
+						
+					</div>
+				</div>
+				
+
+				<div className="Queue">
+					<h2>Queue</h2>
           			{queue.map(queueTrack => (
                		<div>
-               			<p>{queueTrack.name}</p>
+               			<h5>{queueTrack.name}</h5>
                		</div>
            			))}
-
-				</div>
-
-				<div className="row">
-				<button onClick={()=> getAllDevices()}>Select a device</button>
-          		{devices.length > 0 && (
-                	<select name="device" id="" onChange={selectDevice}>
-                    	<option value="">Choose a device</option>
-                    	{devices.map(device => (
-                    	<option value={device.id}>{device.name}</option>
-                   		 ))}
-               		 </select>
-            	)}
-				</div>
-
-				<div className="row">
-					<button onClick={handleCreateQ}>Create this Queue</button>
-          			{inviteCode && (
-              			<>
-             				<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
-            				<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
-              			</>
-            		)}
 
 				</div>
 
@@ -205,7 +228,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					<i className="fa fa-forward fa-lg"></i>
 				</button>
         	</div>
-		</div>
+		</>
 	  
 	)
 }
