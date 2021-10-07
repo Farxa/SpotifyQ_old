@@ -163,7 +163,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
              					 
             					<div onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>
 								<input style={{marginRight: '15px'}} type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/>
-								<i class="fas fa-copy"></i>
+								<i style={{fontSize:'25px', paddingLeft: '10px'}} class="fas fa-copy"></i>
 								</div>
               				</div>
             			)}
@@ -184,8 +184,8 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					   		
 								<div className="addTrack" onClick={()=> addTrackToQueue(track)}>
 								<div>
-									<i class="fas fa-plus-circle"></i>
-									<h4>{track.name}</h4>
+									<i class="fas fa-plus-circle">  <h4>{track.name}</h4></i>
+									
 								</div>
 								
 								<div>
