@@ -19,7 +19,7 @@ export default function CreateQ(props) {
 
 	useEffect(()=> {
 		props.socket.on('track added', payload => {
-			setQueue([...queue, payload.track]);
+			setQueue(q => [...q, payload.track]);
 		  })
 		if (props.match.params.inviteCode) {
 
