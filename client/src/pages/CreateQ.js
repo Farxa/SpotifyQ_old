@@ -160,8 +160,11 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 						
           				{inviteCode && (
               				<div>
-             					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
-            					<div style={{marginLeft: '15px'}} onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}><i class="fas fa-copy"></i>Copy to Clipboard</div>
+             					 
+            					<div onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>
+								<input style={{marginRight: '15px'}} type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/>
+								<i class="fas fa-copy"></i>
+								</div>
               				</div>
             			)}
 
