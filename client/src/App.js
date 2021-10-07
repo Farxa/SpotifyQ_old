@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
 import {getTokenFromResponse} from './spotifyConfig'
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+
 import Content from './pages/Content';
 import ProtectedRoute from './componants/ProtectedRoute';
 import Sidebar from './componants/Sidebar';

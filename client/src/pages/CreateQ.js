@@ -122,7 +122,7 @@ const handleCreateQ = e => {
 		.catch(err => console.log(err))
 };
 
-const createdQ_URL = `http://localhost:3000/${inviteCode}`;
+const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
   if (message) return (
 	<div className="svenContainer">
 		<img style={{height: '400px'}} src="https://www.fazemag.de/wp-content/uploads/2016/02/sven_marquardt_c_mitteldeutscher_verlag__1000.jpg" alt="Sven Marquardt" />
