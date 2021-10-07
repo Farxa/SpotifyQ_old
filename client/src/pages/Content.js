@@ -9,7 +9,7 @@ export default function Content(props) {
 
 	return (
 		<div>
-			<CreateQ spotifyAPI={props.spotifyAPI} token={props.token} setToken={props.setToken} {...props}/>
+			<CreateQ spotifyAPI={props.spotifyAPI} token={props.token} setToken={props.setToken} spotifyAPI={props.spotifyAPI} {...props}/>
 		</div>
 	)
 }

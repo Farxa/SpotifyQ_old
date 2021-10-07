@@ -14,7 +14,7 @@ import Home from './pages/Home';
 
 
 const spotifyAPI = new SpotifyWebApi({
-  ClientId: process.env.CLIENT_ID
+  ClientId: "ea28d4ba34f34b44b59c640052c6e098"
 });
 
 function App(props) {
@@ -59,7 +59,7 @@ function App(props) {
 
         <Route
           exact path="/:inviteCode"
-          render={props => <Content token={token} setToken={addToken} {...props} />}
+          render={props => <Content token={token} setToken={addToken} spotifyAPI={spotifyAPI} {...props} />}
         />  
 
         <Route

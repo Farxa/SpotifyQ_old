@@ -11,15 +11,17 @@ export default function CreateQ(props) {
 	const [devices, setDevices] = useState([]);
 	const [selectedDevice, setSelecedDevice] = useState('');
 	const token = props.token;
-
+	
 	const [message, setMessage] = useState('');
+	console.log("API", props.spotifyAPI);
 
 	useEffect(()=> {
 		if (props.match.params.inviteCode) {
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
-				console.log("THIS IS RES.DATS",res.data);
+				console.log("This is the selectedDevice",res.data.selectedDevice);
+				console.log("This is the token",res.data.token);
 				 setSelecedDevice(res.data.selectedDevice)
-				 props.setToken(res.data.token)
+				 props.spotifyAPI.setAccessToken(res.data.token);
 			}).catch(message => {
 				setMessage(message)
 			})
@@ -28,22 +30,12 @@ export default function CreateQ(props) {
 
 
 
-
-	// console.log("THIS IS THE INVITECODE: ",props.match && props.match.params.inviteCode);
-
-	// console.log("THIS IS THE TOKEN:", token);
-	// console.log('selectedDevice:',selectedDevice);
-
-
-
 	const getAllDevices = () => {
 		props.spotifyAPI.getMyDevices()
 		.then(data =>{
 			setDevices(data.body.devices)
-			// console.log(data.body.devices)
 		})
 	}
-	// console.log('DEVICES:',devices)
 
 	const selectDevice = event => {
 		setSelecedDevice(event.target.value)
@@ -95,7 +87,7 @@ export default function CreateQ(props) {
 	const handleTrackSearch= () => {
 	  props.spotifyAPI.searchTracks(input)
 	  .then(data => {
-		  console.log('TRACKS::', data.body.tracks.items)
+		  console.log('TRACKS:', data.body.tracks.items)
 		  setTracks(data.body.tracks.items)
    }, function(err) {
 	console.error(err);
