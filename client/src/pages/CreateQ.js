@@ -142,7 +142,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 
 				<div className="flexItem1 device">
 					<div className="deviceContainer">
-						<button onClick={()=> getAllDevices()}>Select a device<i class="far fa-hand-pointer"></i></button>
+						<button onClick={()=> getAllDevices()}>Select a device <i class="far fa-hand-pointer"></i></button>
           				{devices.length > 0 && (
                 			<select name="device" id="" onChange={selectDevice}>
                     		<option value="">Choose a device</option>
@@ -154,7 +154,10 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					</div>
 
 					<div className="inviteContainer">
+					<div>
 						<button onClick={handleCreateQ}>Invite friends to join your Q</button>
+					</div>
+						
           				{inviteCode && (
               				<div>
              					<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
@@ -172,15 +175,18 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
             		<button	button onClick={handleTrackSearch}><i class="fa fa-search"></i></button>
 				
 					
-					<div className="searchResults">
+					<div>
 						{ tracks.map(track=> (
-               			<div key={track.id}>
+               			<div className="searchResults" key={track.id}>
 					   		<div>
-					   		<h4>{track.name}</h4>
-							<p>🎤{track.artists[0].name}</p>	
-							<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
+								<button style={{backgroundColor: 'transparent'}} className="buttonQ" onClick={()=> addTrackToQueue(track)}><i class="fas fa-plus-circle"></i></button>
+					   			<h4>{track.name}</h4>
+							</div>
+							<div>
+							<p>🎤{track.artists[0].name}</p>
+							</div>
 							
-					   		</div>
+					   		
                			</div>
               			))}
 				</div>
