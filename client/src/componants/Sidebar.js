@@ -18,10 +18,10 @@ export default function Sidebar(props) {
 			{props.token ? (
 				<div className="links">
 					<Link to="/queue">
-						<button>Create a Queue</button>
+						<button style={{width: '160px'}}>Create a Queue</button>
 					</Link>
 					<Link to="/" onClick={() => handleLogout()}>
-						<button>Logout</button>
+						<button style={{width: '160px', marginTop: '20px'}}>Logout</button>
 					</Link>
 				</div>
 			) : (
