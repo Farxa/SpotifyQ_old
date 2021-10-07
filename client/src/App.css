@@ -1,12 +1,11 @@
 .App {
-  background-image: url("./background.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background: linear-gradient(194deg, rgba(0,0,0,1) 36%, rgba(0,24,193,1) 71%, rgba(0,255,191,1) 100%);
   color: aliceblue;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   position: relative;
+  font-family: 'Oswald', sans-serif;
 }
 .footer {
   position: fixed;
@@ -15,4 +14,5 @@
   left: 0;
   width: 100%;
   padding-bottom: 12px;
+  font-size: 8px;
 }

@@ -14,7 +14,7 @@ export default function Sidebar(props) {
 	}
     
     return (
-      <nav className="container">
+      <nav className="containerSidebar">
 			{props.token ? (
 				<div className="links">
 					<Link to="/queue">

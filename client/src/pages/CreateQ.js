@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
-import socketIOClient from 'socket.io-client';
+// import socketIOClient from 'socket.io-client';
 
 
 
@@ -16,17 +16,16 @@ export default function CreateQ(props) {
 	const [message, setMessage] = useState('');
 	console.log("API", props.spotifyAPI);
 
+
 	useEffect(()=> {
-		const socket = socketIOClient('http//localhost:5005');
-		socket.on('added track ', payload => {
-			setQueue(payload.track);
-		})
 		if (props.match.params.inviteCode) {
+
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
 				console.log("This is the selectedDevice",res.data.selectedDevice);
 				console.log("This is the token",res.data.token);
 				 setSelecedDevice(res.data.selectedDevice)
 				 props.spotifyAPI.setAccessToken(res.data.token);
+
 			}).catch(message => {
 				setMessage(message)
 			})
@@ -104,11 +103,8 @@ export default function CreateQ(props) {
 	  if(existingTrackInQueue) {
 		  return
 	  } else {
-		  setQueue([...queue,track])
+		  setQueue([...queue,track]);
 		  props.spotifyAPI.addToQueue(track.uri)
-		  socket.emit('track added ', {
-			  track: track.uri
-		  })
 		  .then(data => {
 			console.log(data)
 		  })
@@ -136,25 +132,25 @@ const createdQ_URL = `http://localhost:3000/${inviteCode}`;
   )
 	return (
 		<div>
-			<div className="container">
+			<div className="containerQ">
 				<div className="row">
 					<p>Search for a Track</p>
             		<input value={input} onChange={e=> setInput(e.target.value)}/>
             		<button onClick={handleTrackSearch}>Search</button>
-				</div>
 
-				<div className="row">
 					{ tracks.map(track=> (
                		<div key={track.id}>
-               			<p>{track.name}</p>
-               			<p>{track.artists[0].name}</p>
-               			<button onClick={()=> addTrackToQueue(track)}>Add to Queue</button>
+					   <div>
+					   <h4>Track: {track.name}</h4>
+						<p>Artists: {track.artists[0].name}</p>
+               			<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
+					   </div>
                		</div>
               		))}
 				</div>
 
 				<div className="row">
-					<h3>QUEUE TRACKS</h3>
+					<h3>Queue</h3>
           			{queue.map(queueTrack => (
                		<div>
                			<p>{queueTrack.name}</p>
@@ -180,7 +176,7 @@ const createdQ_URL = `http://localhost:3000/${inviteCode}`;
           			{inviteCode && (
               			<>
              				<input type="text" value={createdQ_URL} id="createdQ" style={{width: '160px'}}/> 
-            				<button onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
+            				<button className="buttonQ" onClick={() => {navigator.clipboard.writeText(createdQ_URL)}}>Copy to Clipboard</button>
               			</>
             		)}
 

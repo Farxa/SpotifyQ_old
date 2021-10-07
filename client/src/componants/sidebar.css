@@ -1,45 +1,23 @@
-.container {
-    height: calc(100vh - 3px);
+.containerSidebar {
     width: 200px;
     background-color:black;
     padding-top: 20px;
     display: flex;
+    font-family: sans-serif;
 }
 
 .links {
     padding-left: 20px;
- 
     margin-bottom: 10px;
     cursor: pointer;
     font-weight: bold;
     list-style-type: none;
   }
-  /* li.active {
-    border-left: 2px solid white;
-    padding-left: 18px;
-  }
-  
-
-  li.new-playlist {
-    position: absolute;
-    bottom: 80px;
-} */
-/* i {
-    margin-right: 5px;
-    transform: translateY(1px);
-}
-i::before {
-  font-size: 20px;
-}
-
-span {
-    color: #999;
-    font-weight: 300;
-  } */
 
   button {
     background-color: #010564;
-    width: 167px;
+    width: 166px;
+    margin-right: 30px;
     color: white;
     padding: 12.5px 30px;
     border-radius: 15px;
