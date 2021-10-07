@@ -137,7 +137,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
   	</div>
   )
 	return (
-		<>
+		<div>
 			<div className="containerQ">
 
 				<div className="deviceAndInvite">
@@ -177,27 +177,19 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
             			<button	button onClick={handleTrackSearch}>Search</button> */}
 					</div>
 
-					<br />
+				<br />
 
 					<div className="searchResults">
-
 						{ tracks.map(track=> (
-               				<div key={track.id}>
-							<button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
-					   		<div>
-					   			<h4>Track: {track.name}</h4>
-					   		</div>
-               				</div>
+               			<div key={track.id}>
+					   	<div>
+						   <button className="buttonQ" onClick={()=> addTrackToQueue(track)}>+</button>
+					   		<h4>Track: {track.name}</h4>
+							<p>Artists: {track.artists[0].name}</p>	
+					   </div>
+               			</div>
               			))}
-						
-					  	{tracks.artists.map(artist => {
-						  <div >
-						  	<p>Artists: {artist.name}</p>
-						  </div>
-					  	})}
-						  
-						
-					</div>
+				</div>
 				</div>
 				
 
@@ -205,11 +197,15 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					<h2>Queue</h2>
           			{queue.map(queueTrack => (
                		<div>
-               			<h5>{queueTrack.name}</h5>
+               			<p>{queueTrack.name}</p>
                		</div>
            			))}
 
 				</div>
+
+				
+
+				
 
 			</div>
 		
@@ -228,7 +224,7 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					<i className="fa fa-forward fa-lg"></i>
 				</button>
         	</div>
-		</>
+		</div>
 	  
 	)
 }
