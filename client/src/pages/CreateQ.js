@@ -129,6 +129,7 @@ const handleCreateQ = e => {
 };
 
 const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
+
   if (message) return (
 	<div className="svenContainer">
 		<img style={{height: '400px'}} src="https://www.fazemag.de/wp-content/uploads/2016/02/sven_marquardt_c_mitteldeutscher_verlag__1000.jpg" alt="Sven Marquardt" />
@@ -144,7 +145,8 @@ const createdQ_URL = `https://spotifiq.herokuapp.com/${inviteCode}`;
 					<div className="deviceContainer">
 						<button style={{marginBottom: '20px'}} onClick={()=> getAllDevices()}>Select a device  <i class="far fa-hand-pointer"></i></button>
           				{devices.length > 0 && (
-                			<select style={{marginBottom: '15px', width: '170px', marginRight: '20px'}} name="device" id="" onChange={selectDevice}>
+                			<select style={{marginBottom: '15px', width: '170px', marginRight: '20px'}} 
+							name="device" id="" onChange={selectDevice}>
                     		<option value="">Choose a device</option>
                     		{devices.map(device => (
                     		<option value={device.id}>{device.name}</option>
