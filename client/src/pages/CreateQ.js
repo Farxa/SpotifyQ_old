@@ -20,7 +20,8 @@ export default function CreateQ(props) {
 	let loggedInSpotifyApi = new SpotifyWebApi();
 
 
-	useEffect(()=> {
+	useEffect((e)=> {
+		e.preventDefault();
 		props.socket.on('track added', payload => {
 			setQueue(q => [...q, payload.track]);
 		  })
