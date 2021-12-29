@@ -24,10 +24,12 @@ export default function CreateQ(props) {
 		if (props.match.params.inviteCode) {
 
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
+				let loggedInSpotifyApi = props.spotifyAPI;
 				console.log("This is the selectedDevice",res.data.selectedDevice);
 				console.log("This is the token",res.data.token);
-				 setSelecedDevice(res.data.selectedDevice)
-				 props.spotifyAPI.setAccessToken(res.data.token);
+				loggedInSpotifyApi.setAccessToken(res.data.token);
+				loggedInSpotifyApi.setSelecedDevice(res.data.selectedDevice)
+				 
 
 			}).catch(message => {
 				setMessage(message)
