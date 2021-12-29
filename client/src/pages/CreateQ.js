@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
+import SpotifyWebApi from 'spotify-web-api-node';
 
 
 
@@ -24,7 +25,7 @@ export default function CreateQ(props) {
 		if (props.match.params.inviteCode) {
 
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
-				let loggedInSpotifyApi = props.spotifyAPI;
+				let loggedInSpotifyApi = new SpotifyWebApi();
 				console.log("This is the selectedDevice",res.data.selectedDevice);
 				console.log("This is the token",res.data.token);
 				loggedInSpotifyApi.setAccessToken(res.data.token);
