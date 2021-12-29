@@ -66,7 +66,7 @@ export default function CreateQ(props) {
 
 	const handlePauseClick = () => {
 		
-		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: false})
+		loggedInSpotifyApi.transferMyPlayback([selectedDevice], {play: false})
 		.then(function() {
 			
 		  console.log('Transfering playback to ' + selectedDevice);
@@ -77,7 +77,7 @@ export default function CreateQ(props) {
 	};
 
 	const handleNextClick = () => {
-		props.spotifyAPI.skipToNext()
+		loggedInSpotifyApi.skipToNext()
 		.then(data => {
 			console.log("skip to next track", data)
 		}, (err) => {
@@ -86,7 +86,7 @@ export default function CreateQ(props) {
 	};
 
 	const handlePreviousClick = () => {
-		props.spotifyAPI.skipToPrevious()
+		loggedInSpotifyApi.skipToPrevious()
 		.then(data => {
 			console.log("skip to previous track", data)
 		}, (err) => {
@@ -96,7 +96,7 @@ export default function CreateQ(props) {
 
 
 	const handleTrackSearch= () => {
-	  props.spotifyAPI.searchTracks(input)
+		loggedInSpotifyApi.searchTracks(input)
 	  .then(data => {
 		  console.log('TRACKS:', data.body.tracks.items)
 		  setTracks(data.body.tracks.items)
@@ -114,7 +114,7 @@ export default function CreateQ(props) {
 		  props.socket.emit('new track', {
 			  track: track
 		  })
-		  props.spotifyAPI.addToQueue(track.uri)
+		  loggedInSpotifyApi.addToQueue(track.uri)
 		  .then(data => {
 			console.log(data)
 		  })
