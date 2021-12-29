@@ -27,7 +27,7 @@ function App(props) {
 
     if (_token) {
       setToken(_token);
-      spotifyAPI.setAccessToken(_token);
+      //spotifyAPI.setAccessToken(_token);
     }
   }, [])
 
