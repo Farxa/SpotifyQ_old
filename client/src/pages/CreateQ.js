@@ -49,7 +49,7 @@ export default function CreateQ(props) {
 	}
 
 	const selectDevice = event => {
-		setSelecedDevice(event.target.value)
+		loggedInSpotifyApi.setSelecedDevice(event.target.value)
 	}
 
 	const handlePlayClick = () => {
