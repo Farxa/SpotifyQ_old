@@ -41,7 +41,7 @@ export default function CreateQ(props) {
 
 
 	const getAllDevices = () => {
-		props.spotifyAPI.getMyDevices()
+		loggedInSpotifyApi.getMyDevices()
 		.then(data =>{
 			setDevices(data.body.devices)
 		})
