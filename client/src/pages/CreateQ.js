@@ -17,6 +17,8 @@ export default function CreateQ(props) {
 	const [message, setMessage] = useState('');
 	console.log("API", props.spotifyAPI);
 
+	let loggedInSpotifyApi = new SpotifyWebApi();
+
 
 	useEffect(()=> {
 		props.socket.on('track added', payload => {
@@ -25,7 +27,6 @@ export default function CreateQ(props) {
 		if (props.match.params.inviteCode) {
 
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
-				let loggedInSpotifyApi = new SpotifyWebApi();
 				console.log("This is the selectedDevice",res.data.selectedDevice);
 				console.log("This is the token",res.data.token);
 				loggedInSpotifyApi.setAccessToken(res.data.token);
@@ -53,7 +54,7 @@ export default function CreateQ(props) {
 
 	const handlePlayClick = () => {
 		
-		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: true})
+		loggedInSpotifyApi.transferMyPlayback([selectedDevice], {play: true})
 		.then(function() {
 			
 		  console.log('Transfering playback to ' + selectedDevice);
