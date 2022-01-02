@@ -15,13 +15,14 @@ export default function CreateQ(props) {
 	const token = props.token;
 	
 	const [message, setMessage] = useState('');
-	console.log("API", props.spotifyAPI);
+	console.log("API:", props.spotifyAPI);
 
 	let loggedInSpotifyApi = new SpotifyWebApi();
+	console.log("loggedInSpotifyApi: ", loggedInSpotifyApi)
 
 
-	useEffect((e)=> {
-		e.preventDefault();
+	useEffect(()=> {
+		
 		props.socket.on('track added', payload => {
 			setQueue(q => [...q, payload.track]);
 		  })
