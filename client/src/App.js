@@ -10,8 +10,10 @@ import Home from './pages/Home';
 import socketIOClient from 'socket.io-client';
 
 
-//{ClientId: "ea28d4ba34f34b44b59c640052c6e098"}
-const spotifyAPI = new SpotifyWebApi();
+
+const spotifyAPI = new SpotifyWebApi({
+  ClientId: "ea28d4ba34f34b44b59c640052c6e098"
+});
 
 const socket = socketIOClient('https://spotifiq.herokuapp.com/');
 
@@ -27,7 +29,7 @@ function App(props) {
 
     if (_token) {
       setToken(_token);
-      //spotifyAPI.setAccessToken(_token);
+      spotifyAPI.setAccessToken(_token);
     }
   }, [])
 

@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from "react";
 import './createQ.css';
 import axios from "axios";
-import SpotifyWebApi from 'spotify-web-api-node';
 
 
 
@@ -15,20 +14,17 @@ export default function CreateQ(props) {
 	const token = props.token;
 	
 	const [message, setMessage] = useState('');
-	console.log("API:", props.spotifyAPI);
-
-	let loggedInSpotifyApi = new SpotifyWebApi();
-	console.log("loggedInSpotifyApi: ", loggedInSpotifyApi)
+	console.log("API", props.spotifyAPI);
 
 
 	useEffect(()=> {
-		
 		props.socket.on('track added', payload => {
 			setQueue(q => [...q, payload.track]);
 		  })
 		if (props.match.params.inviteCode) {
 
 			axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
+				let loggedInSpotifyApi = props.spotifyAPI;
 				console.log("This is the selectedDevice",res.data.selectedDevice);
 				console.log("This is the token",res.data.token);
 				loggedInSpotifyApi.setAccessToken(res.data.token);
@@ -44,22 +40,19 @@ export default function CreateQ(props) {
 
 
 	const getAllDevices = () => {
-		console.log(loggedInSpotifyApi)
-		loggedInSpotifyApi.getMyDevices()
+		props.spotifyAPI.getMyDevices()
 		.then(data =>{
-			console.log("devices", data.body.devices)
 			setDevices(data.body.devices)
 		})
 	}
 
 	const selectDevice = event => {
-		console.log("select e.target.val", event.target.value)
 		setSelecedDevice(event.target.value)
 	}
 
 	const handlePlayClick = () => {
 		
-		loggedInSpotifyApi.transferMyPlayback([selectedDevice], {play: true})
+		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: true})
 		.then(function() {
 			
 		  console.log('Transfering playback to ' + selectedDevice);
@@ -71,7 +64,7 @@ export default function CreateQ(props) {
 
 	const handlePauseClick = () => {
 		
-		loggedInSpotifyApi.transferMyPlayback([selectedDevice], {play: false})
+		props.spotifyAPI.transferMyPlayback([selectedDevice], {play: false})
 		.then(function() {
 			
 		  console.log('Transfering playback to ' + selectedDevice);
@@ -82,7 +75,7 @@ export default function CreateQ(props) {
 	};
 
 	const handleNextClick = () => {
-		loggedInSpotifyApi.skipToNext()
+		props.spotifyAPI.skipToNext()
 		.then(data => {
 			console.log("skip to next track", data)
 		}, (err) => {
@@ -91,7 +84,7 @@ export default function CreateQ(props) {
 	};
 
 	const handlePreviousClick = () => {
-		loggedInSpotifyApi.skipToPrevious()
+		props.spotifyAPI.skipToPrevious()
 		.then(data => {
 			console.log("skip to previous track", data)
 		}, (err) => {
@@ -101,7 +94,7 @@ export default function CreateQ(props) {
 
 
 	const handleTrackSearch= () => {
-		loggedInSpotifyApi.searchTracks(input)
+	  props.spotifyAPI.searchTracks(input)
 	  .then(data => {
 		  console.log('TRACKS:', data.body.tracks.items)
 		  setTracks(data.body.tracks.items)
@@ -119,7 +112,7 @@ export default function CreateQ(props) {
 		  props.socket.emit('new track', {
 			  track: track
 		  })
-		  loggedInSpotifyApi.addToQueue(track.uri)
+		  props.spotifyAPI.addToQueue(track.uri)
 		  .then(data => {
 			console.log(data)
 		  })
