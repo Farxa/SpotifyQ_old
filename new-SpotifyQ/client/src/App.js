@@ -16,7 +16,6 @@ const spotifyAPI = new SpotifyWebApi({
 
 function App(props) {
   const [token, setToken] = useState(null);
-  console.log('THE TOKEN:', token);
 
   useEffect(() => {
     const hash = getTokenFromResponse();
@@ -30,11 +29,6 @@ function App(props) {
     }
   }, [])
 
-  const [user, setUser] = useState(props.user)
-
-  const addUser = user => {
-    setUser(user);
-  }
   const addToken = token => {
     setToken(token);
   }
@@ -43,11 +37,11 @@ function App(props) {
     <div className="App">
    
       <Sidebar token={token} setToken={addToken} />
-      {/* <Home token={token} setToken={addToken}/> */}
+      
       <Routes>
       <Route
           path='/queue'
-          element={<Content token={token} {...props}/>}
+          element={<Content token={token} spotifyAPI={spotifyAPI} {...props}/>}
           />
 
         

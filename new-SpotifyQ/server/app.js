@@ -40,8 +40,8 @@ const queue = require("./routes/queue");
 app.use("/", queue);
 
 
-const auth = require("./routes/auth");
-app.use("/api/auth", auth)
+// const auth = require("./routes/auth");
+// app.use("/api/auth", auth)
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
