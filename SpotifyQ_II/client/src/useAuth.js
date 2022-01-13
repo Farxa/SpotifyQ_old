@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from "axios"
 
-export default function useAuth(code) {
+const useAuth = (code) => {
     const [accessToken, setAccessToken] = useState();
 
     useEffect(() => {
@@ -23,3 +23,17 @@ export default function useAuth(code) {
 
     return accessToken;
 }
+
+
+
+const logout = () => {
+    return axios.delete('/api/auth/logout')
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.res.data;
+        });
+}
+
+export {useAuth, logout};

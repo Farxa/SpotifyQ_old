@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const spotifyWebApi = require('spotify-web-api-node');
+const SpotifyWebApi = require('spotify-web-api-node');
 
 
 const app = express();
@@ -20,8 +21,29 @@ const credentials = {
 // comment
 
 app.post('refresh', (req, res) => {
-  
-})
+  const refreshToken = req.body.refreshToken;
+
+  let spotifyApi = new SpotifyWebApi({
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: process.env.REDIRECT_URI,
+    refreshToken
+  })
+});
+
+spotifyApi
+  .refreshAccessToken()
+  .then(() => {
+    console.log(data.body)
+    res.json({
+      accessToken: data.body.access_token,
+      expiresIn: data.body.expires_in
+    })
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(400);
+  });
 
 app.post('/login', (req,res) => {
   //  setup 
