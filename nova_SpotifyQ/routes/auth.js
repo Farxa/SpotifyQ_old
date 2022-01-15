@@ -1,0 +1,63 @@
+const app = require("../app");
+const router = require('express').Router();
+const spotifyWebApi = require("spotify-web-api-node");
+require('dotenv').config();
+
+const credentials = {
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: process.env.REDIRECT_URI || "http://localhost:3000"
+  };
+  
+  // comment
+  
+  router.post('refresh', (req, res) => {
+    const refreshToken = req.body.refreshToken;
+  
+    let spotifyApi = new SpotifyWebApi({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      redirectUri: process.env.REDIRECT_URI,
+      refreshToken
+    });
+  
+    spotifyApi
+    .refreshAccessToken()
+    .then(() => {
+      console.log(data.body)
+      res.json({
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+  });
+  
+  
+  
+  router.post('/login', (req,res) => {
+    //  setup 
+        let spotifyApi = new spotifyWebApi(credentials)
+    
+    //  Get the "code" value posted from the client-side and get the user's accessToken from the spotify api     
+        const code = req.body.code
+    
+        // Retrieve an access token
+        spotifyApi.authorizationCodeGrant(code).then((data) => {
+    
+            // Returning the User's AccessToken in the json formate  
+            res.json({
+                accessToken : data.body.access_token,
+            }) 
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(400)
+        })
+    
+    })
+
+    module.exports = router;

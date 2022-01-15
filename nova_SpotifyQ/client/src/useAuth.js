@@ -12,7 +12,7 @@ const useAuth = (code) => {
 
                 window.history.pushState({}, null, "/");
 
-                console.log(res.data);
+                console.log("accressToken:", res.data.accessToken);
                 setAccessToken(res.data.accessToken);
             })
             .catch(() => {
@@ -27,7 +27,7 @@ const useAuth = (code) => {
 
 
 const logout = () => {
-    return axios.delete('/api/auth/logout')
+    return axios.delete('/logout')
         .then(res => {
             return res.data;
         })
