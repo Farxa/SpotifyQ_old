@@ -28,10 +28,9 @@ app.post('refresh', (req, res) => {
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: process.env.REDIRECT_URI,
     refreshToken
-  })
-});
+  });
 
-spotifyApi
+  spotifyApi
   .refreshAccessToken()
   .then(() => {
     console.log(data.body)
@@ -44,6 +43,9 @@ spotifyApi
     console.log(err);
     res.sendStatus(400);
   });
+});
+
+
 
 app.post('/login', (req,res) => {
   //  setup 
