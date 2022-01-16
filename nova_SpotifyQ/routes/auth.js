@@ -1,4 +1,3 @@
-const app = require("../app");
 const router = require('express').Router();
 const spotifyWebApi = require("spotify-web-api-node");
 require('dotenv').config();
@@ -8,11 +7,11 @@ const credentials = {
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: process.env.REDIRECT_URI || "http://localhost:3000"
   };
-  
-  // comment
+   //console.log("these are the credentials:", credentials)
   
   router.post('refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
+    console.log("this is the refreshToken:", refreshToken)
   
     let spotifyApi = new SpotifyWebApi({
       clientId: process.env.CLIENT_ID,
