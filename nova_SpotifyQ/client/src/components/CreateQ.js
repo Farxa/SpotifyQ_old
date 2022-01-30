@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrackSearch from "./TrackSearch";
 import Queue from "./Queue";
@@ -9,23 +9,34 @@ export default function CreateQ(props) {
   const [input, setInput] = useState("");
   const [tracks, setTracks] = useState([]);
   const [queue, setQueue] = useState([]);
-  const [inviteCode, setInviteCode] = useState("");
+ 
   const API_URL = "http://localhost:8000";
 
   const selectedDevice = props.selectedDevice;
   const token = props.token;
   const spotifyApi = props.spotifyApi
+  const setToken = props.setToken
 
-  const handleCreateQ = e => {
-    const requestBody = { selectedDevice, token, inviteCode };
-    axios
-      .post(`/api/queue`, requestBody)
-      .then(res => {
-        console.log("This is the res: ", res);
-        setInviteCode(res.data.inviteCode);
-      })
-      .catch();
-  };
+  const [message, setMessage] = useState('');
+
+
+  // ❗❗code for inviteCode still not working, I need to use routes for this❗❗
+
+	// useEffect(()=> {
+	// 	if (props.match.params.inviteCode) {
+	// 		axios.get(`/auth/${props.match.params.inviteCode}`).then((res) => {
+	// 			console.log("THIS IS RES.DATS",res.data);
+	// 			 props.setSelecedDevice(res.data.selectedDevice)
+	// 			 setToken(res.data.token)
+	// 		}).catch(message => {
+	// 			setMessage(message)
+	// 		})
+	// 	} 	
+	// }, []) 
+
+  
+  // console.log("THIS IS THE INVITECODE: ", props.match && props.match.params.inviteCode);
+  
 
   const handleTrackSearch = () => {
     spotifyApi.searchTracks(input).then(
@@ -52,12 +63,20 @@ export default function CreateQ(props) {
     }
   };
 
-  const copyToClipboard = () => {
-    const copyText = document.getElementById("createdQ");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-    alert("Copied the code: " + copyText.value);
+
+
+  //
+  const [inviteCode, setInviteCode] = useState("");
+
+  const handleCreateQ = e => {
+    const requestBody = { selectedDevice, token, inviteCode };
+    axios
+      .post(`/api/queue`, requestBody)
+      .then(res => {
+        console.log("This is the res: ", res);
+        setInviteCode(res.data.inviteCode);
+      })
+      .catch();
   };
 
   const createdQ_URL = `http://localhost:8000/${inviteCode}`;
@@ -79,6 +98,8 @@ export default function CreateQ(props) {
         handleCreateQ={handleCreateQ} 
         inviteCode={inviteCode} 
         createdQ_URL={createdQ_URL}
+        setToken={setToken}
+        message={message}
       />
 
       <PlayBar spotifyAPI={spotifyApi} selectedDevice={selectedDevice} />

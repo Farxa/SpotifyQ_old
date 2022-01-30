@@ -50,7 +50,7 @@ export default function Dashboard({code}) {
             </div>
 
             <div>
-                <CreateQ token={token} spotifyApi={spotifyApi} selectedDevice={selectedDevice}/>
+                <CreateQ token={token} spotifyApi={spotifyApi} selectedDevice={selectedDevice} setToken={setToken} setSelecedDevice={selectDevice} />
             </div>
             
         </div>
