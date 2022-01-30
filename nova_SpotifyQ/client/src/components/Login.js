@@ -1,6 +1,6 @@
 import React from 'react';
 import { loginUrl } from '../spotifyConfig';
-import { logout } from '../useAuth';
+// import { logout } from '../useAuth';
 
 export default function Login() {
     
