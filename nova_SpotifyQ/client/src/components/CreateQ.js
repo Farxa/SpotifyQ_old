@@ -9,6 +9,7 @@ export default function CreateQ(props) {
   const [input, setInput] = useState("");
   const [tracks, setTracks] = useState([]);
   const [queue, setQueue] = useState([]);
+  
  
   const API_URL = "http://localhost:8000";
 
@@ -17,10 +18,10 @@ export default function CreateQ(props) {
   const spotifyApi = props.spotifyApi
   const setToken = props.setToken
 
-  const [message, setMessage] = useState('');
 
 
   // ❗❗code for inviteCode still not working, I need to use routes for this❗❗
+  //const [message, setMessage] = useState('');
 
 	// useEffect(()=> {
 	// 	if (props.match.params.inviteCode) {
@@ -36,7 +37,8 @@ export default function CreateQ(props) {
 
   
   // console.log("THIS IS THE INVITECODE: ", props.match && props.match.params.inviteCode);
-  
+
+// ❗❗
 
   const handleTrackSearch = () => {
     spotifyApi.searchTracks(input).then(
@@ -99,7 +101,7 @@ export default function CreateQ(props) {
         inviteCode={inviteCode} 
         createdQ_URL={createdQ_URL}
         setToken={setToken}
-        message={message}
+        //message={message}
       />
 
       <PlayBar spotifyAPI={spotifyApi} selectedDevice={selectedDevice} />
