@@ -7,7 +7,7 @@ const useAuth = (code) => {
 
     useEffect(() => {
         axios
-            .post("http://localhost:8000/login", {code})
+            .post("http://localhost:8000/api/auth/login", {code})
             .then((res) => {
 
                 window.history.pushState({}, null, "/");

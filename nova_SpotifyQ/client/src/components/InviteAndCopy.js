@@ -2,16 +2,6 @@ import React from "react";
 
 export default function InviteAndCopy(props) {
 
-  // const copyToClipboard = () => {
-  //   const copyText = document.getElementById("createdQ");
-  //   copyText.select();
-  //   copyText.setSelectionRange(0, 99999);
-  //   navigator.clipboard.writeText(copyText.value);
-  //   alert("Copied the code: " + copyText.value);
-  // };
-
-
-
   if (props.message) return (
     <div className="svenContainer">
       <img style={{height: '400px'}} src="https://www.fazemag.de/wp-content/uploads/2016/02/sven_marquardt_c_mitteldeutscher_verlag__1000.jpg" alt="Sven Marquardt" />
@@ -22,7 +12,7 @@ export default function InviteAndCopy(props) {
 
   return (
     <div className="row">
-      <button onClick={props.handleCreateQ}>
+      <button onClick={props.handleCreateQ}>  
         Invite friends to join your Q
       </button>
       {props.inviteCode && (

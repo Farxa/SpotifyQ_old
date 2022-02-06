@@ -20,18 +20,3 @@ export default function Queue(props) {
     </ul>
   )
 }
-
-
-
-            
-      //             <img src={r.album.images[2].url}/>
-      //           </div>
-      //           <div className="flex-item">
-      //             <div className="song-name">{r.name}</div>
-      //             <div>{r.artists[0].name}</div>
-      //           </div>
-      //         </div>
-      //       </li>
-      //     );
-      //   })}
-      // </ul>

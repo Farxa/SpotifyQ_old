@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Queue = require("../models/Queue")
 const spotifyWebApi = require("spotify-web-api-node");
 require('dotenv').config();
 
@@ -57,6 +58,19 @@ const credentials = {
             res.sendStatus(400)
         })
     
-    })
+    });
+
+
+    router.get('/:inviteCode',  (req, res, next) => {
+      Queue.findOne({inviteCode: req.params.inviteCode}).then(queueDoc=> {
+        if (queueDoc) {
+          res.status(200).json(queueDoc);
+        } else  {
+          res.status(401).json({message: 'heute leider nicht'})
+        }
+      }).catch(err => {
+        next(err);
+      })
+    });
 
     module.exports = router;

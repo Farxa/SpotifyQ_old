@@ -4,6 +4,7 @@ import TrackSearch from "./TrackSearch";
 import Queue from "./Queue";
 import InviteAndCopy from "./InviteAndCopy";
 import PlayBar from "./PlayBar";
+import {Link} from "react-router-dom"
 
 export default function CreateQ(props) {
   const [input, setInput] = useState("");
@@ -21,11 +22,12 @@ export default function CreateQ(props) {
 
 
   // ❗❗code for inviteCode still not working, I need to use routes for this❗❗
-  //const [message, setMessage] = useState('');
+
+  const [message, setMessage] = useState('');
 
 	// useEffect(()=> {
 	// 	if (props.match.params.inviteCode) {
-	// 		axios.get(`/auth/${props.match.params.inviteCode}`).then((res) => {
+	// 		axios.get(`/api/auth/${props.match.params.inviteCode}`).then((res) => {
 	// 			console.log("THIS IS RES.DATS",res.data);
 	// 			 props.setSelecedDevice(res.data.selectedDevice)
 	// 			 setToken(res.data.token)
@@ -36,7 +38,7 @@ export default function CreateQ(props) {
 	// }, []) 
 
   
-  // console.log("THIS IS THE INVITECODE: ", props.match && props.match.params.inviteCode);
+  // console.log("THIS IS THE INVITECODE: ", props.match.params.inviteCode);
 
 // ❗❗
 
@@ -95,13 +97,13 @@ export default function CreateQ(props) {
       />
 
       <Queue queue={queue} />
-
+      
       <InviteAndCopy 
         handleCreateQ={handleCreateQ} 
         inviteCode={inviteCode} 
         createdQ_URL={createdQ_URL}
         setToken={setToken}
-        //message={message}
+        message={message}
       />
 
       <PlayBar spotifyAPI={spotifyApi} selectedDevice={selectedDevice} />

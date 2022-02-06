@@ -11,11 +11,10 @@ const express = require("express");
 
 const app = express();
 
-const cors = require('cors');
+const cors = require("cors");
 
-app.use(cors()) // to handle the cross-origin requests
+app.use(cors()); // to handle the cross-origin requests
 app.use(express.json()); // to parse JSON bodies
-
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
@@ -23,8 +22,7 @@ require("./config")(app);
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controlled from the routes/index.js
 const auth = require("./routes/auth");
-app.use("/", auth);
-
+app.use("/api/auth", auth);
 
 const queue = require("./routes/queue");
 app.use("/", queue);
