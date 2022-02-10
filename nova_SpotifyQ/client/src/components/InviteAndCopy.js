@@ -1,18 +1,11 @@
 import React from "react";
+import QRCode from "qrcode.react";
 
 export default function InviteAndCopy(props) {
 
-  if (props.message) return (
-    <div className="svenContainer">
-      <img style={{height: '400px'}} src="https://www.fazemag.de/wp-content/uploads/2016/02/sven_marquardt_c_mitteldeutscher_verlag__1000.jpg" alt="Sven Marquardt" />
-      <br />
-        <h1 style={{textAlign: 'center'}}>Heute leider nicht</h1>
-      </div>
-    )
-
   return (
     <div className="row">
-      <button onClick={props.handleCreateQ}>  
+      <button onClick={props.handleInviteQ}>  
         Invite friends to join your Q
       </button>
       {props.inviteCode && (
@@ -25,6 +18,13 @@ export default function InviteAndCopy(props) {
           >
             Copy to Clipboard
           </button>
+          <br />
+          <br />
+          <div>
+            <QRCode value={props.createdQ_URL} style={{ marginRight: 50 }}/>
+          </div>
+          <br />
+          <br />
         </>
       )}
     </div>

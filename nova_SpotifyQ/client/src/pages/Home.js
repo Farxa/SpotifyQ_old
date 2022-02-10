@@ -1,10 +1,10 @@
 import React from "react";
-import Login from "../components/Login";
 import { Link } from "react-router-dom";
 
 export default function Home(props) {
   return (
     <div className="center-div">
+    This is the home page 🏠
       {props.code ? (
         <div>
           <Link to="/dashboard">
@@ -14,7 +14,7 @@ export default function Home(props) {
       ) : (
         <div>
           <Link to="/login">
-            <button>Login</button>
+            <button>Login with Spotify</button>
           </Link>
         </div>
       )}
