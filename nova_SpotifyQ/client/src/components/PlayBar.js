@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function PlayBar(props) {
   const [nowPlaying, setNowPlaying] = useState([]);
 
-  const handleNowPlaying = () => {
-    props.spotifyAPI.getMyCurrentPlayingTrack().then(
-      function (data) {
-        setNowPlaying(data.body.item);
-        console.log("nowPlaying:", nowPlaying.album);
-      }
-    );
-  }
+  
+		const handleNowPlaying = setTimeout(
+      () => {
+        props.spotifyAPI.getMyCurrentPlayingTrack().then(
+          function (data) {
+            console.log(data.body)
+            setNowPlaying(data.body.item);
+            console.log("nowPlaying:", nowPlaying.album);
+            }
+        );
+      }, 1000);
+	
+
+  
+  
+
 
   const handlePlayClick = () => {
    
@@ -19,7 +27,6 @@ export default function PlayBar(props) {
       .then(function () {
         console.log("Transfering playback to " + props.selectedDevice);
       }).then(
-        handleNowPlaying(),
       function (err) {
         //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
         console.log("Something went wrong!", err);
@@ -34,7 +41,6 @@ export default function PlayBar(props) {
           console.log("Transfering playback to " + props.selectedDevice);
         })
         .then(
-          handleNowPlaying(),
         function (err) {
           //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
           console.log("Something went wrong!", err);
@@ -46,7 +52,6 @@ export default function PlayBar(props) {
       data => {
         console.log("skip to next track", data);
       }).then(
-        handleNowPlaying(),
       err => {
         console.log(err);
       })
@@ -58,7 +63,6 @@ export default function PlayBar(props) {
         console.log("skip to previous track", data);
       })
       .then(
-        handleNowPlaying(),
       err => {
         console.log(err);
       })
@@ -112,9 +116,8 @@ export default function PlayBar(props) {
         <i className="fa fa-forward fa-lg"></i>
       </button>
     </div>
-  )} else
-
-  {return (
+  )} else {
+    return (
     
     <div>
       <button
