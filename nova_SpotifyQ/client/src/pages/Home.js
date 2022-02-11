@@ -7,7 +7,7 @@ export default function Home(props) {
     This is the home page 🏠
       {props.code ? (
         <div>
-          <Link to="/dashboard">
+          <Link to="/queue">
             <button>Dashboard</button>
           </Link>
         </div>

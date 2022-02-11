@@ -4,7 +4,6 @@ import Login from './components/Login';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
-import { useParams } from "react-router-dom";
 import CreateQ from './components/CreateQ';
 
 
@@ -21,17 +20,17 @@ function App(props) {
     
     <Routes>
       
-      <Route path='/dashboard' element={<Dashboard code={code}/>} />
+      <Route path='queue' element={<Dashboard code={code}/>} />
       <Route path='/' element={<Home code={code}/>} />
-      <Route path='/login' element={<Login />} />
+      <Route path='login' element={<Login />} />
 
-      <Route path="/:inviteCode" element={<CreateQ />}
+      <Route path=":inviteCode" element={<CreateQ />}
 
       />  
         
 
       {/* <Route
-          path='/dashboard'
+          path='/queue'
           element={
             <ProtectedRoute code={code} redirectTo='/login'>
               <Dashboard code={code}/>

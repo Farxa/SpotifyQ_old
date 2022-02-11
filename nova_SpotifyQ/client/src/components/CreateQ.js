@@ -25,14 +25,14 @@ export default function CreateQ(props) {
   console.log("PARAMS:", inviteCode);
 
 
-  // ❗❗code for inviteCode still not working, I need to use react router for this❗❗
+  // ❗❗
 
   const [message, setMessage] = useState('');
 
 	useEffect(()=> {
 		if (inviteCode) {
 			axios.get(`/${inviteCode}`).then((res) => {
-        
+        console.log("object");
 				 props.setSelecedDevice(res.data.selectedDevice)
 				 spotifyApi.setAccessToken(res.data.token)
 			})

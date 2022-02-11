@@ -3,7 +3,7 @@ import { useAuth } from "../useAuth";
 import SpotifyWebApi from "spotify-web-api-node";
 import Devices from "../components/Devices";
 import CreateQ from "../components/CreateQ";
-import { Link } from "react-router-dom";
+
 
 
 // import Logout from '../components/Logout';

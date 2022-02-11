@@ -62,8 +62,10 @@ const credentials = {
 
 
     router.get('/:inviteCode',  (req, res, next) => {
-      Queue.findOne({inviteCode: req.params.inviteCode}).then(queueDoc=> {
+      Queue.findOne({inviteCode: req.params.inviteCode})
+      .then(queueDoc=> {
         if (queueDoc) {
+          console.log("5ara on the route")
           res.status(200).json(queueDoc);
         } else  {
           res.status(401).json({message: 'heute leider nicht'})
