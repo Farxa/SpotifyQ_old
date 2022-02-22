@@ -4,7 +4,6 @@ import TrackSearch from "./TrackSearch";
 import Queue from "./Queue";
 import InviteAndCopy from "./InviteAndCopy";
 import PlayBar from "./PlayBar";
-import {Link} from "react-router-dom"
 import { useParams } from 'react-router-dom';
 
 
@@ -24,6 +23,8 @@ export default function CreateQ(props) {
   const { inviteCode } = useParams();
   console.log("PARAMS:", inviteCode);
 
+  
+
 
   // ❗❗
 
@@ -32,7 +33,8 @@ export default function CreateQ(props) {
 	useEffect(()=> {
 		if (inviteCode) {
 			axios.get(`/${inviteCode}`).then((res) => {
-        console.log("object");
+        const inviteLink = window.location.href
+        console.log("pollLink",inviteLink);
 				 props.setSelecedDevice(res.data.selectedDevice)
 				 spotifyApi.setAccessToken(res.data.token)
 			})
@@ -135,6 +137,7 @@ export default function CreateQ(props) {
           createdQ_URL={createdQ_URL}
           setToken={setToken}
           message={message}
+          params={inviteCode}
         />
   
         <PlayBar spotifyAPI={spotifyApi} selectedDevice={selectedDevice} />

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+
 
 export default function Devices(props) {
 	
@@ -14,7 +14,7 @@ export default function Devices(props) {
 							name="device" id="" onChange={props.selectDevice}>
                     		<option value="">Choose a device</option>
                     		{props.devices.map(device => (
-                    		<option value={device.id}>{device.name}</option>
+                    		<option value={device.id} key={device.id}>{device.name}</option>
                    		 	))}
                		 		</select>
             			)}

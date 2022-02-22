@@ -2,7 +2,6 @@ import './App.css';
 import Dashboard from './pages/Dashboard';
 import Login from './components/Login';
 import { Routes, Route } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import CreateQ from './components/CreateQ';
 

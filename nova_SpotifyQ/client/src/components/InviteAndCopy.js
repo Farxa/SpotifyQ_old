@@ -1,20 +1,12 @@
-import React, {useState, useEffect} from "react";
-import QRCode from "qrcode";
+import QRCode from 'qrcode.react'
 
 export default function InviteAndCopy(props) {
 
   const inviteURL = props.createdQ_URL
+  //const inviteQR = inviteURL + props.params
 
-  const [src, setSrc] = useState("");
 
-  useEffect(() => {
-    console.log("before qrcode",inviteURL);
-    QRCode.toDataURL(props.createdQ_URL).then(inviteURL => {
-      console.log("after qrcode",inviteURL);
-      setSrc(inviteURL);
-      
-    });
-  }, [])
+  
 
   return (
     <div className="row">
@@ -34,7 +26,7 @@ export default function InviteAndCopy(props) {
           <br />
           <br />
           <div>
-            <img src={src} alt="qr-code" />
+           <QRCode value={inviteURL}/>
           </div>
           <br />
           <br />

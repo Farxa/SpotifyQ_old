@@ -16,6 +16,9 @@ export default function Dashboard(props) {
   const [token, setToken] = useState(null);
   const accessToken = useAuth(props.code);
 
+  const [name, setName] = useState("");
+  const [img, setImg] = useState("");
+
   useEffect(() => {
     if (!accessToken) return;
     const _token = accessToken;
@@ -23,9 +26,13 @@ export default function Dashboard(props) {
     spotifyApi.setAccessToken(accessToken);
 
     spotifyApi.getMe().then(data => {
-      console.log(data);
+      setName(data.body.display_name)
+      setImg(data.body.images[0].url)
     });
+    
   }, [accessToken]);
+
+  console.log("USER: ", name, img);
 
   const [devices, setDevices] = useState([]);
   const [selectedDevice, setSelectedDevice] = useState("");
@@ -41,11 +48,17 @@ export default function Dashboard(props) {
     setSelectedDevice(e.target.value);
   };
 
+
   return (
     <div>
       {/* <Logout token={accessToken}/> */}
-      
-      <div>
+      {name && img ? (
+        <>
+        <div>
+          <h3>Hi {name}</h3>
+          <img src={img} alt="" width="60px"/>
+        </div>
+        <div>
         <Devices
           getAllDevices={getAllDevices}
           selectDevice={selectDevice}
@@ -62,6 +75,28 @@ export default function Dashboard(props) {
           setSelecedDevice={selectDevice}
         />
       </div>
+      </>
+      ) : (
+        <>
+        <div>
+        <Devices
+          getAllDevices={getAllDevices}
+          selectDevice={selectDevice}
+          devices={devices}
+        />
+      </div>
+
+      <div>
+        <CreateQ
+          token={token}
+          spotifyApi={spotifyApi}
+          selectedDevice={selectedDevice}
+          setToken={setToken}
+          setSelecedDevice={selectDevice}
+        />
+      </div>
+      </>
+      )}
     </div>
   );
 }
