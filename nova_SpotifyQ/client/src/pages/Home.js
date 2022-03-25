@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Login from "../components/Login";
 
 export default function Home(props) {
   return (
@@ -7,13 +8,13 @@ export default function Home(props) {
       {props.code ? (
         <>
           <h1>Welcome to SpotifyQ</h1>
-          <br />
-          <h3>
-            ⚠ Open your Spotify in the background
-            <h4>
-              to be able to connect your device and queue up tracks when creating a Queue
-            </h4>
-          </h3>
+
+          <h3>⚠ Open your Spotify player in the background</h3>
+
+          <p>
+            to be able to create a Queue and start a collaborative listening session
+          </p>
+
           <div>
             <Link to="/queue">
               <button>Dashboard</button>
@@ -26,9 +27,7 @@ export default function Home(props) {
             <h1>Welcome to SpotifyQ</h1>
             <br />
             <h3>Login with your Spotify to continue</h3>
-            <Link to="/login">
-              <button>Login with Spotify</button>
-            </Link>
+            <Login />
           </div>
         </>
       )}

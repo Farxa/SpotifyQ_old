@@ -3,7 +3,22 @@ import React, { useState, useEffect } from "react";
 export default function PlayBar(props) {
   const [nowPlaying, setNowPlaying] = useState([]);
 
-  //useEffect(()=> {
+  // useEffect(()=> {
+	// 	const handleNowPlaying = setTimeout(
+  //     () => {
+  //       props.spotifyAPI.getMyCurrentPlayingTrack()
+  //       .then(data => {
+  //         if (data.body) {
+  //             console.log(data.body)
+  //           setNowPlaying(data.body.item);
+  //           console.log("nowPlaying:", nowPlaying.album);
+  //         }
+  //           }
+  //       );
+  //     }, 1000);	
+	// }, []) 
+
+  
 		// const handleNowPlaying = setTimeout(
     //   () => {
     //     props.spotifyAPI.getMyCurrentPlayingTrack()
@@ -15,22 +30,7 @@ export default function PlayBar(props) {
     //       }
     //         }
     //     );
-    //   }, 1000);	
-	//}, []) 
-
-  
-		const handleNowPlaying = setTimeout(
-      () => {
-        props.spotifyAPI.getMyCurrentPlayingTrack()
-        .then(data => {
-          if (data.body) {
-              console.log(data.body)
-            setNowPlaying(data.body.item);
-            console.log("nowPlaying:", nowPlaying.album);
-          }
-            }
-        );
-      }, 1000);
+    //   }, 1000);
 
   
   const handlePlayClick = () => {
